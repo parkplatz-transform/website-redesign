@@ -1,0 +1,137 @@
+[
+  {
+    "nid": [
+      {
+        "value": 43
+      }
+    ],
+    "uuid": [
+      {
+        "value": "01e2d857-10e7-420a-bb36-0aca79d71f39"
+      }
+    ],
+    "vid": [
+      {
+        "value": 84
+      }
+    ],
+    "langcode": [
+      {
+        "value": "en"
+      }
+    ],
+    "type": [
+      {
+        "target_id": "dates",
+        "target_type": "node_type",
+        "target_uuid": "5a122fba-4ab8-41c1-95a8-224fd6c8aa9d"
+      }
+    ],
+    "revision_timestamp": [
+      {
+        "value": "2021-03-27T09:04:17+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "revision_uid": [
+      {
+        "target_id": 1,
+        "target_type": "user",
+        "target_uuid": "aa15bf62-06cd-4241-9604-7d110cd28796",
+        "url": "\/user\/1"
+      }
+    ],
+    "revision_log": [],
+    "status": [
+      {
+        "value": true
+      }
+    ],
+    "uid": [
+      {
+        "target_id": 2,
+        "target_type": "user",
+        "target_uuid": "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+        "url": "\/user\/2"
+      }
+    ],
+    "title": [
+      {
+        "value": "Parkplatztransform beim Parking Day"
+      }
+    ],
+    "created": [
+      {
+        "value": "2020-09-04T10:21:02+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "changed": [
+      {
+        "value": "2021-03-27T09:04:17+00:00",
+        "format": "Y-m-d\\TH:i:sP"
+      }
+    ],
+    "promote": [
+      {
+        "value": false
+      }
+    ],
+    "sticky": [
+      {
+        "value": false
+      }
+    ],
+    "default_langcode": [
+      {
+        "value": true
+      }
+    ],
+    "revision_translation_affected": [
+      {
+        "value": true
+      }
+    ],
+    "path": [
+      {
+        "alias": null,
+        "pid": null,
+        "langcode": "en"
+      }
+    ],
+    "body": [
+      {
+        "value": "\u003Cp\u003EBesucht uns auf dem Richardplatz und genie\u00dft die sch\u00f6ne Zeit in unserem Freiluft-Wohnzimmer. Wir\u0026nbsp;stellen\u0026nbsp;euch die Ergebnisse unserer bisherigen Z\u00e4hlungen vor\u0026nbsp;und \u00fcberlegen gemeinsam mit euch, wie der Parkraum alternativ\u0026nbsp;genutzt werden kann. Um wenn wir schon vor Ort sind, z\u00e4hlen wir nat\u00fcrlich auch gleich ein paar Stra\u00dfenz\u00fcge rund um den Platz. Wir freuen uns auf euch!\u003C\/p\u003E\r\n",
+        "format": "basic_html",
+        "processed": "\u003Cp\u003EBesucht uns auf dem Richardplatz und genie\u00dft die sch\u00f6ne Zeit in unserem Freiluft-Wohnzimmer. Wir\u00a0stellen\u00a0euch die Ergebnisse unserer bisherigen Z\u00e4hlungen vor\u00a0und \u00fcberlegen gemeinsam mit euch, wie der Parkraum alternativ\u00a0genutzt werden kann. Um wenn wir schon vor Ort sind, z\u00e4hlen wir nat\u00fcrlich auch gleich ein paar Stra\u00dfenz\u00fcge rund um den Platz. Wir freuen uns auf euch!\u003C\/p\u003E",
+        "summary": ""
+      }
+    ],
+    "field_date": [
+      {
+        "value": "2021-03-28"
+      }
+    ],
+    "field_day": [
+      {
+        "value": "18.9.2020"
+      }
+    ],
+    "field_location": [],
+    "field_location_street_and_number": [
+      {
+        "value": "Treffpunkt: Richardplatz um 14 Uhr"
+      }
+    ],
+    "field_neighbourhood": [
+      {
+        "value": "Lichtenberg"
+      }
+    ],
+    "field_time": [
+      {
+        "value": "14:00"
+      }
+    ]
+  }
+]

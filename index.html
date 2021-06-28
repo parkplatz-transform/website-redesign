@@ -1,0 +1,353 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>ParkplatzTransform</title>
+  <meta name="description" content="ParkplatzTransform">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="css/main.css?v=1.0.30">
+  <link rel="stylesheet" href="css/slideshow.css?v=1.0.5">
+
+</head>
+
+  <body id="body" style="opacity: 0; transition: opacity 1s;">
+
+
+
+
+    <div id="header">
+      <div class="column">
+        <img alt="logo" id="logo" src="img/logo320.png">
+        <div id="menu">
+          <a id="menu-news">Aktuelles</a>
+          <a id="menu-images">Bilder</a>
+          <a id="menu-downloads">Downloads</a>
+          <a id="menu-social">Social-Media</a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="container" style="opacity: 0; transition: opacity 1s;">
+
+      <div class='banner small-banner' style='background-image: url(img/berlin-1900-4.jpg); background-position: center bottom;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="bar bar-white">
+        <div class="column">
+          <h2>ParkplatzTransform</h2><p class="inline" id='basic-text-intro'></p>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+      <div class='banner' style='background-image: url(img/banner-cars2.jpg); background-position: center bottom;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
+
+
+
+
+
+
+
+
+      <div class="bar">
+        <div class="column">
+          <h2>Wie?</h2>
+          <p id='basic-text-about-us-prefix'>Wir entwickeln eine App, mit der viele Menschen Parkplätze kartieren und so Transparenz schaffen können. Wir suchen Mitstreiter:innen, wie dich, um uns für mehr Flächengerechtigkeit und eine lebenswertere Stadt stark zu machen!</p>
+
+          <div class='max-text' onclick="var d = document.getElementById('basic-text-about-us'); d.querySelector('.max-shadow').remove(); d.style.maxHeight = 'unset'; this.className = '';" style="" id='basic-text-about-us'></div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+      <div class="bar bar-red">
+        <div class="column">
+          <center>
+            <h2 style="display: block;">Mach mit!</h2>
+            <p>Wir treffen uns zu Plena und Parkplatz-Z&auml;hlaktionen! Auf der Karte siehst Du, wann und wo das n&auml;chste Treffen stattfindet.</p>
+          </center>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class='banner' style='background-image: url(img/berlin-1900.jpg); background-position: center;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
+
+
+
+
+
+
+
+
+      <!--<div class='banner' style='border-top: 1px solid white; background-image: url(img/berlin-bike-path3.png); background-position: center bottom;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div id="target-news"></div>
+      <div class="bar">
+        <div class="column">
+
+          <div id="map">
+
+            <div style='position: absolute; top: -6em; left: -2em; right: 0; bottom: 0; z-index: -1;'>
+              <div style='margin: auto; height: 100%; width: 1000px; background-position: center top; background-image: url(img/logo320.png); background-position: center top; background-size: cover; opacity: 0.06;'></div>
+            </div>
+
+             <!--<img id="berlin-map" alt="berlin-map" src="img/berlin-map.svg"/><br>-->
+             <div id="berlin-map"></div>
+          </div>
+
+
+
+
+          <h2>Aktuelles</h2>
+          <div id="upcoming-events"></div>
+        </div>
+      </div>
+
+
+
+      <div class="banner tiny-banner" style='background-image: url(img/banner-car-free2.jpg); background-position: center top;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
+
+      <div class="bar">
+        <div class="column">
+          <h2>Vergangene Treffen</h2>
+          <a style='font-size: 2em; cursor: pointer; text-decoration: none;' onclick="var d = document.getElementById('past-events').style.display; if( d == 'block' ) document.getElementById('past-events').style.display = 'none'; else document.getElementById('past-events').style.display = 'block';">&#x25bc;</a>
+          <br><br>
+          <div style='display: none;' id="past-events"></div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class='banner small-banner' style='border-top: 1px solid white; background-image: url(img/banner-cars.jpg);'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+      <div id="target-images"></div>
+      <div class="bar bar-white">
+        <div class="column">
+
+          <h2>Pictures</h2>... or it didn't happen
+
+          <div id='images'>
+            <div class="slideshow-container">
+
+              <div id="slideshow-slides">
+              </div>
+
+              <a id="slideshow-prev" class="prev">&#10094;</a>
+              <a id="slideshow-next" class="next">&#10095;</a>
+            </div>
+
+            <div style="display: none;" id="slideshow-dots" style="text-align:center"> </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+      <div id="target-downloads"></div>
+      <div class='banner' style='background-image: url(img/berlin-1900-3.jpg); background-position: center center;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
+
+      <div class="bar bar-white">
+        <div class="column" style="width: 500px !important; max-width: 500px !important; min-width: 500px;">
+          <h2>Downloads</h2>
+
+          <div id="downloads"></div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+      <div class='banner tall-banner' style='background-image: url(img/berlin-1900-5.jpg); background-position: center bottom; background-size: cover;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div id="target-social"></div>
+      <div class="bar bar-white"> 
+        <div class="column text-centered">
+          <h2>Social-Media</h2>
+
+          <div id="content-social" style="margin: auto; max-width: 600px !important; width: 600px !important;">
+            <a class="twitter-timeline" data-height="600" href="https://twitter.com/ParkplatzT?ref_src=twsrc%5Etfw">Tweets by ParkplatzT</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class='banner' style='position: relative; background-image: url(img/berlin-1900-2.jpg); background-position: center bottom;'>
+        <div class="outer-fader">
+          <div class="column inner-fader">
+          </div>
+        </div>
+      </div>
+
+
+
+    <div id="footer">
+      <div class="column">
+
+        <div id="twitter">
+          <a href="https://twitter.com/ParkplatzT?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-show-count="false" class="align-bottom">Follow @ParkplatzT</a>
+          <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+
+        <div>Impressum</div>
+
+        <div>Datenschutz</div>
+
+        <div>
+          <a href="mailto:parkplatztransform@riseup.net">eMail</a>
+        </div>
+
+        <div style="display: none;" id="languages">
+          <img id="lang-german" src="img/lang-german.png">
+          <img id="lang-english" src="img/lang-english.png">
+        </div>
+
+        <img alt="berl-str-logo" id="berl-str-logo" src="img/logo-berl-str.jpg" style="display: inline;">
+
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="js/d3.js?v=1.0.0"></script>
+    <script src="js/slideshow.js?v=1.0.5"></script>
+    <script src="js/main.js?v=1.0.7"></script>
+
+  </body>
+
+</html>
