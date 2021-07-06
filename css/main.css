@@ -161,10 +161,10 @@ p.inline {
 }
 
 .column {
-  width: 1000px;
+  width: 900px;
   margin: auto;
   padding: 1em;
-  min-width: 1000px;
+  min-width: 900px;
   overflow: visible;
 }
 

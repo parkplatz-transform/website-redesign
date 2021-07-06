@@ -293,7 +293,7 @@
           //console.log('dates', dates);
 
           var upcomingEvents = document.getElementById("upcoming-events");
-          upcomingEvents.innerHTML = "";
+          upcomingEvents.innerHTML = "Gerade keine kommenden Events - schau in ein paar Tagen nochmal rein!";
           var i = 0;
           dates.forEach( function(date) {
             if( i > 0 && i < dates.length ) {
