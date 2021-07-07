@@ -70,7 +70,7 @@ var initSlideShow = function() {
           slides.insertAdjacentHTML('beforeend',
               '<div class="slideshow-slide fade">' +
                 '<img src="' + IMAGES_BASE_URL + img["field_images_large"] + '">' +
-                '<div class="text">' + img["title"] + '</div>'+
+                '<div class="text">' + img["title"] + (img["field_image_credits"] ? " (<i>" + img["field_image_credits"] + "</i>)" : "" ) + '</div>'+
               '</div>');
         })(i);
       }
