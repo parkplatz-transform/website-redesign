@@ -282,8 +282,11 @@
                     }
                     //console.log("car count for " + district + ": " + carCount)
                     _carCounts[district] = carCount;
-                    document.getElementById('number-of-cars-' + district).innerHTML = formatNumber(carCount);
-                    document.getElementById('cars-to-soccer-' + district).innerHTML = formatNumber(cars2soccer(_carCounts[district]));
+                    var o = document.getElementById('number-of-cars-' + district);
+                    if( o ) {
+                      o.innerHTML = formatNumber(carCount); 
+                      document.getElementById('cars-to-soccer-' + district).innerHTML = formatNumber(cars2soccer(_carCounts[district]));
+                    }
 
                   } catch(e) {
                     console.log("failed to parse response: " + e);
