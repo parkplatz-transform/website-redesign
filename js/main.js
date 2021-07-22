@@ -1,3 +1,4 @@
+
 (function() {
 
   const TEXTS_URL = "https://x-transform-backend.kontrollfeld.net/basic-texts";
@@ -6,6 +7,57 @@
   const DOWNLOADS_URL = "https://x-transform-backend.kontrollfeld.net/downloads";
 
   const PAGES = ["images", "downloads", "news", "social"];
+
+  var cars2soccer = function(cars) {
+    return Math.floor(cars * PARKING_SIZE / SOCCER_FIELD_SIZE * 10)/10;
+  };
+
+  var formatNumber = function(f) {
+    var s = "" + f;
+    var split = s.split(".");
+    var n = "";
+    for( var i = split[0].length ; i >= 0 ; i -= 3 ) {
+      if( i <= 3 ) {
+        n = split[0].substring( 0, i ) + n;
+      } else {
+        n = "." + split[0].substring( i-3, i ) + n; 
+      }
+      //console.log(n);
+    }
+    if( split.length > 1 ) {
+      return n + "," + split[1];
+    }
+    return n;
+  };
+
+  var _carCounts = {};
+
+  var frohnauSVG = {
+    x: 374.14599609375,
+    y: 184.19900512695312,
+  };
+  var frohnauGPS = {
+    x: 13.26235,
+    y: 52.64047,
+  };
+
+  var gruenauSVG = {
+    x: 933.7319946289062,
+    y: 856.6640014648438,
+  };
+  var gruenauGPS = {
+    x: 13.55454,
+    y: 52.42569,
+  };
+
+  var svg2gps = function(svg) {
+    var scaleX = (gruenauGPS.x - frohnauGPS.x) / (gruenauSVG.x - frohnauSVG.x);
+    var scaleY = (gruenauGPS.y - frohnauGPS.y) / (gruenauSVG.y - frohnauSVG.y);
+    return {
+      x: frohnauGPS.x + (svg.x - frohnauSVG.x) * scaleX,
+      y: frohnauGPS.y+ (svg.y - frohnauSVG.y) * scaleY,
+    }
+  }
 
   function scrollToTargetAdjusted(targetId){
       var element = document.getElementById(targetId);
@@ -174,6 +226,77 @@
         //.style('fill', "white")
         .on("mouseover", function(ev) {
           var district = ev.toElement ? ev.toElement.id : ev.target.id;
+
+          var carCount = _carCounts[district];
+          if( !(carCount >= 0) ) {
+
+            var points = [];
+            var allPoints = [];
+            var skipped = 0;
+            for( var i = 0 ; i < this.points.length ; i++ ) {
+              var cur = svg2gps(this.points[i]);
+              var skip = false;
+              if( i > 0 && i < this.points.length - 1 ) {
+                var prev = svg2gps(this.points[i-1]);
+                var next = svg2gps(this.points[i+1]);
+
+                var lineLength = Math.sqrt( Math.pow( next.x - prev.x, 2 ) + Math.pow( next.y - prev.y, 2 ) );
+
+                var curDistToLine = Math.abs( (next.x - prev.x) * (prev.y - cur.y) - (prev.x - cur.x) * (next.y - prev.y) ) / lineLength;
+                //console.log((curDistToLine / lineLength), curDistToLine , lineLength);
+                if( (curDistToLine / lineLength) < 0.05 ) {
+                  skip = true;
+                }
+              }
+
+              if( !skip ) {
+                points.push( "" + cur.x + "," + cur.y );
+              } else {
+                skipped ++;
+              }
+              allPoints.push( "" + cur.x + "," + cur.y );
+              //console.log("points", points);
+              //console.log("allPoints", allPoints);
+            }
+            //console.log("skipped " + skipped + " points out of " + this.points.length );
+            if( points.length > 0 ) {
+              points.push( points[0] );
+
+              var xhrData = new XMLHttpRequest();
+              xhrData.onload = function () {
+                if (xhrData.status >= 200 && xhrData.status < 300) {
+                  try {
+                    var carCount = 0;
+                    var o = JSON.parse(xhrData.response);
+                    for( var i = 0 ; i < o['features'].length ; i ++ ) {
+                      var f = o['features'][i];
+                      if( f['properties'] && f['properties']['subsegments'] && f['properties']['subsegments'].length > 0 ) {
+                        for( var j = 0 ; j < f['properties']['subsegments'].length ; j++ ) {
+                          var s = f['properties']['subsegments'][j];
+                          if( s.car_count > 0 ) {
+                            carCount += s.car_count;
+                          }
+                        }
+                      }
+                    }
+                    //console.log("car count for " + district + ": " + carCount)
+                    _carCounts[district] = carCount;
+                    document.getElementById('number-of-cars').innerHTML = formatNumber(carCount);
+                    document.getElementById('cars-to-soccer').innerHTML = formatNumber(cars2soccer(_carCounts[district]));
+                  } catch(e) {
+                    console.log("failed to parse response: " + e);
+                    //throw(e);
+                  }
+                }
+              };
+              var url = 'https://api.xtransform.org/segments?bbox=' + points.join(",");
+              //console.log("url", url);
+              xhrData.open('GET', url, true);
+              xhrData.setRequestHeader('Content-Type', 'application/json' );
+              xhrData.send(null);
+            }
+          }
+
           var bbox = ev.toElement ? ev.toElement.getBBox() : ev.target.getBBox();
           var size = bbox.width * bbox.height;
           //d3.select(this).style("fill", d3.select(this).attr('stroke')).attr('fill-opacity', 0.3);
@@ -187,7 +310,11 @@
 
           var s = stats[district];
           districtTooltip.append("div").html(
-            "<span>" + district.replace("_", " ") + "</span>" + 
+            "<span style='font-size: 1.5em; font-weight: bold;'>" + district.replace("_", " ") + "</span>" + 
+            "<br>" +
+            "<br>Bisher haben wir hier<br><span id='number-of-cars' style='font-size: 1.5em; font-weight: bold; font: monospace;'>" + (_carCounts[district] >= 0 ? formatNumber(_carCounts[district]) : "...") + "</span> <br>Parkpl&auml;tze gez&auml;hlt!" +
+            "<br>" +
+            "<br>Das entspricht etwa <br><span id='cars-to-soccer' style='font-size: 1.5em; font-weight: bold; font: monospace;'>" + (_carCounts[district] >= 0 ? formatNumber(cars2soccer(_carCounts[district])) : "..." ) + "</span> <br>Fu&szlig;ballfeldern." +
             ""
             //"<br>Bisher haben wir <b>" + s.parking + "</b> Parkpl&auml;tze gez&auml;hlt!" +
             //"<br>Das entspricht etwa <b>" + Math.ceil(s.parking * PARKING_SIZE / SOCCER_FIELD_SIZE * 10)/10 + "</b> Fu&szlig;ballfeldern." +
@@ -223,8 +350,8 @@
           .join('circle')
           .attr('cx', d => getDistrictPos(d) ? getDistrictPos(d).x-32 : null)
           .attr('cy', d => getDistrictPos(d) ? getDistrictPos(d).y-32 : null)
-          .attr('r', 16)
-          .attr("fill-opacity", 1.0)
+          .attr('r', 8)
+          .attr("fill-opacity", 0.8)
           .attr("fill", d => getDistrictColor(d))
           .style("background-color", d => getDistrictColor(d))
           .attr('id', d => "past-date-" + d["field_neighbourhood"].length ? d["field_neighbourhood"][0]["value"] : "xxx" )
@@ -264,6 +391,7 @@
           .on("mouseout", function(ev) {
             //d3.select(this).attr('fill-opacity', 0.5);
             var district = ev.toElement ? ev.toElement.id : ev.target.id;
+            circleTooltip.style("visibility", "hidden");
             //circleTooltip.style("visibility", "hidden");
           });
       }
@@ -293,7 +421,7 @@
           //console.log('dates', dates);
 
           var upcomingEvents = document.getElementById("upcoming-events");
-          upcomingEvents.innerHTML = "Gerade keine kommenden Events - schau in ein paar Tagen nochmal rein!";
+          upcomingEvents.innerHTML = "Momentan keine kommenden Events - schau in ein paar Tagen nochmal rein!";
           var i = 0;
           dates.forEach( function(date) {
             if( i > 0 && i < dates.length ) {
