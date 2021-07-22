@@ -221,6 +221,7 @@
           .attr("xlink:href", "img/fernsehturm.png");
       }
 
+      var popupLocked = false;
 
       map.selectAll('polygon')
         //.style('fill', "white")
@@ -283,6 +284,7 @@
                     _carCounts[district] = carCount;
                     document.getElementById('number-of-cars-' + district).innerHTML = formatNumber(carCount);
                     document.getElementById('cars-to-soccer-' + district).innerHTML = formatNumber(cars2soccer(_carCounts[district]));
+
                   } catch(e) {
                     console.log("failed to parse response: " + e);
                     //throw(e);
@@ -322,15 +324,18 @@
             );
         })
         .on("click", function(ev) {
-          circleTooltip.style("visibility", "hidden");
+          
+          //circleTooltip.style("visibility", "hidden");
         })
         .on("mousemove", function(ev) {
           districtTooltip.style("top", (ev.offsetY)+"px").style("left",(ev.offsetX)+"px");
         })
         .on("mouseout", function(ev) {
           //d3.select(this).style("fill", "white").attr('fill-opacity', 1);
+          if( !popupLocked ) {
+            districtTooltip.style("visibility", "hidden");
+          }
           d3.select(this).attr('fill-opacity', 1);
-          districtTooltip.style("visibility", "hidden");
         });
 
       /////////////////////////////////
@@ -356,7 +361,8 @@
           .style("background-color", d => getDistrictColor(d))
           .attr('id', d => "past-date-" + d["field_neighbourhood"].length ? d["field_neighbourhood"][0]["value"] : "xxx" )
           .on("click", function(ev, d) {
-            circleTooltip.style("visibility", "hidden");
+            popupLocked = !popupLocked;
+            //circleTooltip.style("visibility", "hidden");
           })
           .on("mouseover", function(ev, d) {
 
@@ -374,6 +380,7 @@
                 circleTooltip.append("hr").style("margin-top", "2em").style("margin-bottom", "2em");
               }
               circleTooltip.append("div").style("position", "absolute").style("cursor", "pointer").style("top", "1em").style("right", "1em").html("X").on("click", function(ev, d) { 
+                popupLocked = false;
                 circleTooltip.style("visibility", "hidden");
               } );
               circleTooltip.append("div").style("z-index", 5).html(
@@ -391,7 +398,9 @@
           .on("mouseout", function(ev) {
             //d3.select(this).attr('fill-opacity', 0.5);
             var district = ev.toElement ? ev.toElement.id : ev.target.id;
-            circleTooltip.style("visibility", "hidden");
+            if( !popupLocked ) {
+              circleTooltip.style("visibility", "hidden");
+            }
             //circleTooltip.style("visibility", "hidden");
           });
       }
