@@ -281,8 +281,8 @@
                     }
                     //console.log("car count for " + district + ": " + carCount)
                     _carCounts[district] = carCount;
-                    document.getElementById('number-of-cars').innerHTML = formatNumber(carCount);
-                    document.getElementById('cars-to-soccer').innerHTML = formatNumber(cars2soccer(_carCounts[district]));
+                    document.getElementById('number-of-cars-' + district).innerHTML = formatNumber(carCount);
+                    document.getElementById('cars-to-soccer-' + district).innerHTML = formatNumber(cars2soccer(_carCounts[district]));
                   } catch(e) {
                     console.log("failed to parse response: " + e);
                     //throw(e);
@@ -312,9 +312,9 @@
           districtTooltip.append("div").html(
             "<span style='font-size: 1.5em; font-weight: bold;'>" + district.replace("_", " ") + "</span>" + 
             "<br>" +
-            "<br>Bisher haben wir hier<br><span id='number-of-cars' style='font-size: 1.5em; font-weight: bold; font: monospace;'>" + (_carCounts[district] >= 0 ? formatNumber(_carCounts[district]) : "...") + "</span> <br>Parkpl&auml;tze gez&auml;hlt!" +
+            "<br>Bisher haben wir hier<br><span id='number-of-cars-" + district + "' style='font-size: 1.5em; font-weight: bold; font: monospace;'>" + (_carCounts[district] >= 0 ? formatNumber(_carCounts[district]) : "...") + "</span> <br>Parkpl&auml;tze gez&auml;hlt!" +
             "<br>" +
-            "<br>Das entspricht etwa <br><span id='cars-to-soccer' style='font-size: 1.5em; font-weight: bold; font: monospace;'>" + (_carCounts[district] >= 0 ? formatNumber(cars2soccer(_carCounts[district])) : "..." ) + "</span> <br>Fu&szlig;ballfeldern." +
+            "<br>Das entspricht etwa <br><span id='cars-to-soccer-" + district + "' style='font-size: 1.5em; font-weight: bold; font: monospace;'>" + (_carCounts[district] >= 0 ? formatNumber(cars2soccer(_carCounts[district])) : "..." ) + "</span> <br>Fu&szlig;ballfeldern." +
             ""
             //"<br>Bisher haben wir <b>" + s.parking + "</b> Parkpl&auml;tze gez&auml;hlt!" +
             //"<br>Das entspricht etwa <b>" + Math.ceil(s.parking * PARKING_SIZE / SOCCER_FIELD_SIZE * 10)/10 + "</b> Fu&szlig;ballfeldern." +
