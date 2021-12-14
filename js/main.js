@@ -412,6 +412,28 @@
 
       var pastDatesLoaded = false;
       var upcomingDatesLoaded = false;
+      var formatDate = function(d) {
+        var months = {
+          1: "Januar",
+          2: "Februar",
+          3: "März",
+          4: "April",
+          5: "Mai",
+          6: "Juni",
+          7: "Juli",
+          8: "August",
+          9: "September",
+          10: "Oktober",
+          11: "November",
+          12: "Dezember",
+        };
+        if( !d ) { return ""; }
+        var split = d.split("-");
+        if( split.length == 3 ) {
+          return split[2] + ". " + months[parseInt(split[1])] + " " + split[0];
+        }
+        return d;
+      }
 
       var xhrDates = new XMLHttpRequest();
       xhrDates.onload = function () {
@@ -433,7 +455,10 @@
           //console.log('dates', dates);
 
           var upcomingEvents = document.getElementById("upcoming-events");
-          upcomingEvents.innerHTML = "Momentan keine kommenden Events - schau in ein paar Tagen nochmal rein!";
+          upcomingEvents.innerHTML = "";
+          if( dates.length == 0 ) {
+            upcomingEvents.innerHTML = "Momentan keine kommenden Veranstaltungen - schau in ein paar Tagen nochmal rein!";
+          }
           var i = 0;
           dates.forEach( function(date) {
             if( i > 0 && i < dates.length ) {
@@ -445,7 +470,7 @@
             //console.log('date', date);
             o.innerHTML =
               "<h3>" + date["title"][0]["value"] +  "</h3>" + 
-              "<h4>" + date["field_date"][0]["value"] + " - " + date["field_time"][0]["value"] + "</h4>" + 
+              "<h4>" + formatDate(date["field_date"][0]["value"]) + " " + date["field_time"][0]["value"] + "</h4>" + 
               "<p>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "" ) +  "</p>" + 
               "<div>" + date["body"][0]["processed"] + "</div>";
 
