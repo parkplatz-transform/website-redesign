@@ -63,9 +63,11 @@ p {
   margin-top: 4em;
 }
 #upcoming-events p, #past-events p, #circle-popup p {
-  text-align: justify;
-  display: inline;
-  line-height: 1.5em;
+  display: block; 
+  margin-top: 1em; 
+  margin-bottom: 1em; 
+  margin-left: 0; 
+  margin-right: 0;
 }
 
 #upcoming-events h4, #past-events h4, #circle-popup h4 {
