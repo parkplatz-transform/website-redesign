@@ -1,14 +1,14 @@
 html {
   margin: 0;
   padding: 0;
-  background-color: white;
   font-family: sans-serif;
-  color: #333;
 }
 
 body {
   padding: 0;
   margin: 0;
+  background-color: #f3f3f3;
+  color: #030303;
 }
 
 h1 {
@@ -39,7 +39,6 @@ h2 {
 
 p {
   text-align: justify;
-  display: inline;
   line-height: 2.0em;
 }
 
@@ -82,12 +81,12 @@ p.inline {
 #header {
   opacity: 0.90;
   position: sticky;
-  top: 0;
-  height: 3em;
+  top: 0em;
+  height: 5em;
   z-index: 1;
   box-shadow: 0em 0em 1em #666;
-  background-color: #fff;
-  transition: background-color 1s, box-shadow 1s, opacity 1s;
+  background-color: #f3f3f3;
+  transition: background-color 1s, box-shadow 1s, opacity 1s, height 1s;
 }
 #header:hover {
   opacity: 1;
@@ -102,33 +101,32 @@ p.inline {
 }
 
 #header img#logo {
-  transition: height 1s;
-  height: 9em;
-  top: 0.2em;
+  transition: height 1s, right 1s;
+  height: 7em;
+  top: 0em;
   right: 1em;
   position: absolute;
   z-index: 1;
 }
 
 #header img#logo:hover {
-  transition: height 1s;
-  height: 14em;
-  right: 1em;
+  transition: height 1s, right 1s;
+  height: 9em;
+  right: 0em;
   top: 0.2em;
   position: absolute;
 }
 
 #header #menu {
-  padding-top: 0em;
-  top: 1.0em;
-  left: 0em;
-  position: absolute;
-  margin-left: 1em;
+    position: absolute;
+    top: 45%;
+    color: red;
 }
 
 #header #menu a {
   text-decoration: none;
-  padding-right: 1em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
   cursor: pointer;
   user-select: none;
   text-shadow: 1px 1px 0.15em #999;
@@ -141,10 +139,11 @@ p.inline {
 #footer {
   bottom: 0;
   width: 100%;
-  background-color: #ddd;
+  background-color: #cecece;
   color: #333;
   text-align: center;
   box-shadow: 0em 0em 2em #333;
+  padding-bottom: 4em;
 }
 
 #footer .column div {
@@ -171,8 +170,8 @@ p.inline {
 }
 
 .bar {
-  padding-top: 4em;
-  padding-bottom: 4em;
+  padding-top: 3em;
+  padding-bottom: 3em;
 }
 
 .bar-small {
@@ -280,19 +279,30 @@ a:active {
 }
 
 div#images {
-  margin-top: 5em;
 }
 
 div.banner {
-  background-color: white;
   box-shadow: 0em 0em 1em #666;
   background-size: cover; 
-  height: 20em; 
+  height: 10em; 
   background-position: center bottom;
+  background-blend-mode: hard-light;
+  background-color: black;
+/*
+  opacity: 0.3;
+  transition: opacity 1s;
+*/
+}
+
+div.banner:hover {
+/*
+  opacity: 0.8;
+  transition: opacity 1s;
+*/
 }
 
 div.small-banner {
-  height: 10em; 
+  height: 6em; 
 }
 
 div.tiny-banner {
@@ -308,17 +318,23 @@ div.high-banner {
 }
 
 div.outer-fader {
-  opacity: 0.1;
   /*background-color: black;*/
   height: 100%;
 }
 
 div.inner-fader {
+  display: flex;
+  align-items: flex-end;
   padding-bottom: 0;
   padding-top: 0;
-  opacity: 1.0;
-  background-color: white;
   height: 100%;
+}
+div.inner-fader h1 {
+    margin-bottom: 0.2em;
+    color: #ddd;
+    text-shadow: 0 0 0.2em #333;
+    font-size: 3em;
+    font-weight: bold;
 }
 
 img#berl-str-logo {
@@ -350,10 +366,10 @@ img#berl-str-logo:hover {
   top: 0em;
   width: 100%;
   height: 4em;
-  background: -webkit-linear-gradient(transparent, white);
-  background: -o-linear-gradient(transparent, white);
-  background: -moz-linear-gradient(transparent, white);
-  background: linear-gradient(transparent, white);
+  background: -webkit-linear-gradient(transparent, #f3f3f3);
+  background: -o-linear-gradient(transparent, #f3f3f3);
+  background: -moz-linear-gradient(transparent, #f3f3f3);
+  background: linear-gradient(transparent, #f3f3f3);
 }
 .max-shadow span {
   position: absolute;
