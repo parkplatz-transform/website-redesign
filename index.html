@@ -8,8 +8,8 @@
   <meta name="description" content="ParkplatzTransform">
   <meta name="author" content="SitePoint">
 
-  <link rel="stylesheet" href="css/main.css?v=1.0.33">
-  <link rel="stylesheet" href="css/slideshow.css?v=1.0.5">
+  <link rel="stylesheet" href="css/main.css?v=1.0.39">
+  <link rel="stylesheet" href="css/slideshow.css?v=1.0.8">
 
 </head>
 
@@ -18,14 +18,35 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+    <div id="container" style="opacity: 0; transition: opacity 1s;">
+
+      <div class='banner' style='opacity: 0.8 !important; background-image: url(img/old01.png); background-position: center bottom;     position: fixed; top: 0; left: 0; width: 100%; z-index: -2; background-size: cover; height: 24em; z-index: -5;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
+          
+
+      <div id="content" style="position: absolute; top: 24em; width: 100%; z-index: -1; background-color: #f3f3f3; color: #333;">
+      <div class="column" style="padding: 0; height: 0;">
+	<h1 style="position: relative; top: -1.5em; font-size: 2.4em;; color: white;">Parkplatz <span style="color: #a7242d; text-shadow: 1px 1px 0.1em #f99; ">&#x25b6;</span> Transform</h1>
+      </div>
+        
     <div id="header">
-      <div class="column">
-        <img alt="logo" id="logo" src="img/logo320.png">
+      <div class="column" style="height: 100%; padding: 0;">
+        <img alt="logo" id="logo" src="img/logo320-notext.png">
         <div id="menu">
-          <a id="menu-news">Aktuelles</a>
-          <a id="menu-images">Bilder</a>
+          <a id="menu-news">Termine</a> &#183; 
+          <a id="menu-results">Daten</a> &#183; 
+          <a id="menu-example">Analyse</a> &#183; 
+          <a id="menu-media">Fotos</a> &#183; 
           <a id="menu-downloads">Downloads</a>
-          <a id="menu-social">Social-Media</a>
         </div>
       </div>
     </div>
@@ -41,28 +62,14 @@
 
 
 
-    <div id="container" style="opacity: 0; transition: opacity 1s;">
-
-      <div class='banner' style='background-image: url(img/berlin-1900-4-sml.jpg); background-position: center bottom;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
-        
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-      <div class="bar bar-white">
+      <div class="bar bar-white" style=''>
         <div class="column">
-          <h2>ParkplatzTransform</h2><p class="inline" id='basic-text-intro'></p>
+	   <p class="inline" id='basic-text-intro'></p>
         </div>
       </div>
 
@@ -75,9 +82,18 @@
 
 
 
-      <div class='banner' style='background-image: url(img/banner-cars2.jpg); background-position: center bottom;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
 
 
+
+
+
+
+
+
+
+
+
+      <div class='banner small-banner' style='background-image: url(img/old04.png); background-position: center 14em; background-size: cover;'><div class="outer-fader"><div class="column inner-fader"><h1>Wie?</h1></div></div></div>
 
 
 
@@ -86,7 +102,6 @@
 
       <div class="bar">
         <div class="column">
-          <h2>Wie?</h2>
           <p id='basic-text-about-us-prefix'>Wir entwickeln eine App, mit der viele Menschen Parkplätze kartieren und so Transparenz schaffen können. Wir suchen Mitstreiter:innen, wie dich, um uns für mehr Flächengerechtigkeit und eine lebenswertere Stadt stark zu machen!</p>
 
           <div class='max-text' onclick="var d = document.getElementById('basic-text-about-us'); d.querySelector('.max-shadow').remove(); d.style.maxHeight = 'unset'; this.className = '';" style="" id='basic-text-about-us'></div>
@@ -100,29 +115,49 @@
 
 
 
-      <div class="bar bar-red">
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+      <!--
+      <div id="target-news"></div>
+      <div class="bar">
         <div class="column">
-          <center>
-            <h2 style="display: block;">Mach mit!</h2>
-            <p>Wir treffen uns zu Plena und Parkplatz-Z&auml;hlaktionen! Auf der Karte siehst Du, wann und wo die n&auml;chsten Veranstaltungen stattfinden.</p>
-          </center>
+            <h2 style="display: inline-block; margin-right: 1em;">Mach mit!</h2><p>Wir treffen uns zu Plena und Parkplatz-Z&auml;hlaktionen! Auf der Karte siehst Du, wann und wo die n&auml;chsten Veranstaltungen stattfinden.</p>
+	    <br>
+	    <br>
+	    <br>
+	    <br>
+	    <br>
+	    <br>
+	    <br>
+
+          <div id="map">
+
+            <div style='position: absolute; top: -6em; left: -2em; right: 0; bottom: 0; z-index: -1;'>
+              <div style='margin: auto; height: 100%; width: 900px; background-position: center top; background-image: url(img/logo320.png); background-position: center top; background-size: cover; opacity: 0.06;'></div>
+            </div>
+
+	     <off <img id="berlin-map" alt="berlin-map" src="img/berlin-map.svg"/><br> /off>
+             <div id="berlin-map"></div>
+          </div>
+
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!--<div class='banner' style='border-top: 1px solid white; background-image: url(img/berlin-bike-path3.png); background-position: center bottom;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>-->
+	     -->
 
 
 
@@ -137,36 +172,195 @@
 
 
       <div id="target-news"></div>
+      <div class='banner' style='background-image: url(img/new01.png); background-position: center 17em;'><div class="outer-fader"><div class="column inner-fader"><h1>Termine</h1></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
       <div class="bar">
         <div class="column">
 
-          <div id="map">
-
-            <div style='position: absolute; top: -6em; left: -2em; right: 0; bottom: 0; z-index: -1;'>
-              <div style='margin: auto; height: 100%; width: 900px; background-position: center top; background-image: url(img/logo320.png); background-position: center top; background-size: cover; opacity: 0.06;'></div>
-            </div>
-
-             <!--<img id="berlin-map" alt="berlin-map" src="img/berlin-map.svg"/><br>-->
-             <div id="berlin-map"></div>
-          </div>
 
 
 
-
-          <h2>Aktuelles</h2>
           <div id="upcoming-events"></div>
-        </div>
-      </div>
 
 
-
-      <div class='banner' style='background-image: url(img/berlin-1900.jpg); background-position: center;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
-      <div class="bar">
-        <div class="column">
-          <h2>Vergangene Veranstaltungen</h2>
-          <a style='font-size: 2em; cursor: pointer; text-decoration: none;' onclick="var d = document.getElementById('past-events').style.display; if( d == 'block' ) document.getElementById('past-events').style.display = 'none'; else document.getElementById('past-events').style.display = 'block';">&#x25bc;</a>
+	  <center><a style='font-size: 2em; cursor: pointer; text-decoration: none;' onclick="var d = document.getElementById('past-events').style.display; if( d == 'block' ) document.getElementById('past-events').style.display = 'none'; else document.getElementById('past-events').style.display = 'block';">&#x25bc;</a></center>
           <br><br>
-          <div style='display: none;' id="past-events"></div>
+          <div style='display: none;' id="past-events">
+	  </div>
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+      <div id="target-results"></div>
+      <div class='banner small-banner' style='background-image: url(img/old03.png); background-position: center 30em;'><div class="outer-fader"><div class="column inner-fader"><h1>Daten</h1></div></div></div>
+
+
+
+
+
+
+      <div class="bar" style='padding-top: 0;'>
+	<iframe id='map-iframe' src="http://staging.app.xtransform.org/?embedded=true" style="border: none; width: 100%; height: 40em;"></iframe>
+        <div class="column">
+		<p>
+      Auf dieser Karte ist der von uns kartierte öffentliche Parkraum <span style="color: #3bb2d0;">&#9148; markiert &#9632;</span> eingezeichnet.
+      Vollständige Daten zu allen kartierten Parkplätzen im Geo-JSON Format können <a href="data/parkplatz-transform.zip">hier</a> heruntergeladen werden.
+      Diese Daten beinhalten pro Straßenabschnitt den Anzahl der Parkplätze im öffentlichen Parkraum. (Privater Parkraum wie zum Beispiel Supermarkt-Parkplätze und Tiefgaragen sind nicht eingezeichnet.) Daneben haben wir eine Reihe von verschiedenen Charakteristika erhoben: Ist Parken nur zeitweise erlaubt? Wenn ja, wann besteht Parkverbot und wie wird der Parkplatz sonst genutzt? Liegt der Parkplatz parallel, diagonal oder quer zur Fahrbahn? Sind die Parkplätze auf der Straße markiert oder nicht? Sind die Parkplätze gebührenpflichtig oder nicht? Dürfen nur bestimmte Personen den Parkplatz nutzen, z.B. Menschen mit Behinderung, Anwohner:innen... ? Wird auf der Fahrbahn oder in einer Parkbucht geparkt?
+
+		</p>
+		<p>
+		Hier findest Du die kartographierte Anzahl an Parkpl&auml;tzen pro Stadtbereich
+		</p>
+	</div>
+
+	<div style="text-align: center; background-color: #f3f3f3; width: 100%;">
+		<br>
+		<br>
+		<script>var maxDataResultIdx = 1; var dataResultIdx = 0;</script>
+		<h2 id='data-result-headline'>Datenvisualisierungen</h2>
+		<br>
+		<br>
+
+		<div style='display: table; margin: auto;'>
+			<a style='display: table-cell; vertical-align: middle; font-size: 2em; cursor: pointer; text-decoration: none;' onclick="document.getElementById('data-result-frame-' + dataResultIdx).style.display = 'none'; dataResultIdx = (dataResultIdx <= 0 ? maxDataResultIdx : dataResultIdx-1); document.getElementById('data-result-frame-' + dataResultIdx).style.display = 'inline-block'; ">&#xab; </a>
+			<div id='data-result-frame-0' style="display: inline-block; height: 40em; overflow-y: auto;" class="column">
+				<iframe title="Anteil der Parkplaetzflaeche am Strassenraum" aria-label="Karte" id="datawrapper-chart-G9cdj" src="https://datawrapper.dwcdn.net/G9cdj/1/" scrolling="no" frameborder="0" style="width: 0px; border: none; min-width: 100% !important; height: 621px;" height="612"></iframe>
+			</div>
+
+			<div id='data-result-frame-1' style="display: none; height: 40em; overflow-y: auto;" class="column">
+				<iframe title="Parkplaetze pro LOR (Updated 25.01)" aria-label="Balken" id="datawrapper-chart-3oUF5" src="https://datawrapper.dwcdn.net/3oUF5/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="3001"></iframe>
+				<script type="text/javascript">
+				//!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+				</script>
+			</div>
+			<a style='display: table-cell; vertical-align: middle; font-size: 2em; cursor: pointer; text-decoration: none;' onclick="document.getElementById('data-result-frame-' + dataResultIdx).style.display = 'none'; dataResultIdx = (dataResultIdx >= maxDataResultIdx ? 0 : dataResultIdx+1); document.getElementById('data-result-frame-' + dataResultIdx).style.display = 'inline-block'; ">&#xbb; </a>
+		</div>
+	</div>
+
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="column">
+	  <center>
+	  <h2 style="">Auswertung</h2>
+	  </center>
+	  <p>
+	  Wir sind gerne behilflich wenn ihr als Verkehrswende-Initiativen, Kiezgruppe etc. an einer Analyse interessiert seid, wie Parkraum in eurem Kiez alternativ genutzt werden kann.
+	  Kontaktiert uns!
+	  Hier zwei Beispiele von Analysen, die wir gemeinsam mit lokalen Initiativen vorbereitet haben:
+	  </p>
+	  <div style='display: table;'>
+
+		  <a id='pres-prev' style='display: table-cell; vertical-align: middle; font-size: 2em; cursor: pointer; text-decoration: none;'>&#xab; </a>
+		  <div id='presentation' style="display: table-cell; cursor: pointer; background-size: cover; width: 100%; height: 30em;"></div>
+		  <a id='pres-next' style='display: table-cell; vertical-align: middle; font-size: 2em; cursor: pointer; text-decoration: none;'>&#xbb; </a>
+	  </div>
+	</div>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div id="target-example"></div>
+
+      <div class='banner small-banner' style='background-image: url(img/old02.png); background-position: center;'><div class="outer-fader"><div class="column inner-fader"><h1>Analyse</h1></div></div></div>
+      <div class="bar bar-white" style="padding-bottom: 0;">
+        <div class="column">
+		<p>
+		Unsere Kartierungsergebnisse sind open data. Jede*r kann sie downloaden, verarbeiten, mit anderen Daten in Beziehung setzen (z.B. gibt es geographische Informationen im <a href='https://fbinter.stadt-berlin.de/fb/index.jsp'>FIS-Broker</a>).
+		Hier seht ihr einige erste Beispiele für Analysen und Visualisierungen unserer Parkraumdaten.
+		In unseren Analysen der Parkplätze im öffentlichen Raum in verschiedenen Kiezen nutzen wir lebensweltlich orientierte <a href='https://www.stadtentwicklung.berlin.de/planen/basisdaten_stadtentwicklung/lor/'>Räume LOR</a>). Wir geben dabei einen Konfidenzbereich an, da mit unserer Kartierungsmethode manchmal die Zuordnung von Parkplätzen zu Kiezen nicht eindeutig ist, wenn Parkräume über Kiezgrenzen hinaus gehen.
+		</p>
+
+			  <br><br>
+		  <center><h2>Schillerkiez</h2><br><br></center>
+		  <div style="">
+			  <p>
+			  Als Beispiel einer Auswertung auf Basis unserer Kartierungen haben wir den Parkraum im  Schillerkiez thematisiert. Dort gibt es eine Initiative für einen verkehrsberuhigten "Kiezblock". Wir haben diese öffentliche Diskussion mit einer Analyse der Flächengerechtigkeit unterstützt. Im Schillerkiez ist der Anteil des Parkraums an der öffentlichen Straßenfläche besonders hoch und der Anteil öffentlicher Grünflächen besonders niedrig.
+			  </p>
+			  <br><br>
+		  K&ouml;nnen wir den &ouml;ffentlichen Raum im <b>Schillerkiez</b> gerechter nutzen?
+			  <br>
+			  <br>
+			  <b style="font-size: 1.3em;">Wir finden: JA!</b>
+			  <br>
+			  <br>
+			  <br>
+			  <p> Parkpl&auml;tze nehmen fast ein viertel des &ouml;ffentlichen Stra&szlig;enraums im Schillerkiez ein! Das hei&szlig;t im Kiez ist die Fl&auml;che von fast <b>f&uuml;nf Fu&szlig;ballfeldern f&uuml;r Parkpl&auml;tze</b> reserviert.  </p>
+			  <br>
+			  <div style="box-shadow: 0em 0em 1em #ccc;  border 1px solid black; border-radius: 2em; background-color: #eee; width: 45%; text-align: center; display: inline-block; vertical-align: top;">
+				  <h3 style='display: inline-block;'>Parkraum<br></h3> -- Platz f&uuml;r Maschinen<br>
+				  <img style="width: 6em; " src="img/soccer-parking.png"><img style="width: 6em; " src="img/soccer-parking.png"><img style="width: 6em; " src="img/soccer-parking.png"><img style="width: 6em; " src="img/soccer-parking.png"><img style="width: 6em; " src="img/soccer-parking.png">
+				  <br>
+				  <br>
+				  <b>4,5 Fu&szlig;ballpl&auml;tze</b><br> f&uuml;r die Parkpl&auml;tze von <span style="display: block; font-weight: bold; font-size: 1.75em;">30%</span> der Anwohner*innen (Autobesitzer*innen)<br><br><br>
+			  </div>
+			  <div style="box-shadow: 0em 0em 1em #ccc;  border 1px solid black; border-radius: 2em; background-color: #eee; width: 45%; text-align: center; display: inline-block; vertical-align: top; margin-left: 4em;">
+				  <h3 style='display: inline-block;'>Lebensraum<br></h3> -- Platz f&uuml;r Menschen<br>
+				  <img style="width: 6em; " src="img/soccer.png"><img style="width: 6em; " src="img/soccer.png">
+				  <br><br><br><br><br><br><br><br><br><br>
+				  <b>2 Fu&szlig;ballpl&auml;tze</b><br> f&uuml;r Gr&uuml;nfl&auml;chen und Spielpl&auml;tze von <span style="display: block; font-weight: bold; font-size: 3em;">100%</span> der Anwohner*innen<br> <br>
+			  </div>
+			  <div style='' id="example">
+				  <p>
+				  Das ist <b>mehr als doppelt so viel Fl&auml;che wie f&uuml;r Lebensraum</b> (Gr&uuml;nanlagen und Spielpl&auml;tze) bereitgestellt wird. W&auml;hrend ein Parkplatz nur einer (meist &ouml;konomisch besser gestellten) Minderheit zum Abstellen ihres PKW hilft dienen Gr&uuml;nanlagen allen Stadtbewohnern.
+				  Es besitzen aber nur <b>30% der Anwohner*innen ein Auto</b>. 
+				  </p>
+				  <p>
+				  Wir finden, dieses Verh&auml;tnis ist <b>nicht zukunftsweisend</b>, weder f&uuml;r die Gesundheit einer wachsenden urbanen Bev&ouml;lkerung noch f&uuml;r die Anpassung und die Mitigation des Klimawandels!
+				  </p>
+
+			  </div>
+		  </div>
+	  
+	  <br>
+	  <!--
+	  <center><a style='font-size: 2em; cursor: pointer; text-decoration: none;' onclick="var d = document.getElementById('example').style.display; if( d == 'block' ) document.getElementById('example').style.display = 'none'; else document.getElementById('example').style.display = 'block';">&#x25bc;</a></center>
+          <div style='display: none;' id="example">
+	  -->
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
         </div>
       </div>
 
@@ -182,7 +376,6 @@
 
 
 
-      <div class='banner small-banner' style='border-top: 1px solid white; background-image: url(img/banner-cars.jpg);'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
 
 
 
@@ -195,13 +388,39 @@
 
 
 
-      <div id="target-images"></div>
-      <div class="bar bar-white">
+
+
+
+
+
+
+
+
+
+
+
+      <div id="target-media"></div>
+      <div class='banner small-banner' style='border-top: 1px solid white; background-image: url(img/new02.png); background-position: center 10em;'><div class="outer-fader"><div class="column inner-fader"><h1>Fotos</h1></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="bar bar-white" style="padding-top: 0; padding-bottom: 0; background-color: black;">
         <div class="column">
 
-          <h2>Pictures</h2>... or it didn't happen
-
-          <div id='images'>
+          <div style="background-color: black;" id='images'>
             <div class="slideshow-container">
 
               <div id="slideshow-slides">
@@ -220,6 +439,19 @@
 
 
 
+      <!--<div class='banner small-banner' style='background-image: url(img/old04.png); background-position: center 34em; background-size: cover;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>-->
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -227,13 +459,18 @@
 
 
       <div id="target-downloads"></div>
-      <div class='banner' style='background-image: url(img/berlin-1900-3.jpg); background-position: center center;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
+      <div class='banner small-banner' style='background-image: url(img/old04.png); background-position: center 33em;'><div class="outer-fader"><div class="column inner-fader"><h1>Downloads</h1></div></div></div>
 
       <div class="bar bar-white">
-        <div class="column" style="width: 500px !important; max-width: 500px !important; min-width: 500px;">
-          <h2>Downloads</h2>
+        <div class="column" style="width: 600px !important; max-width: 600px !important; min-width: 600px; margin-bottom: 6em; margin-top: 3em;">
+		<!--<center><h2>Downloads</h2></center>-->
 
-          <div id="downloads"></div>
+	  <div style="margin: auto; width: 80%; box-shadow: 0em 0em 1em #ccc; border-radius: 1em; padding: 4em; margin-top: 1em;;">
+
+		  <p>Die vom Projekt kartographierten <a target="_newtab" href="http://geojson.org/">Geo-JSON</a>-Daten k&ouml;nnen hier heruntergeladen werden: <a href="data/parkplatz-transform.zip">Download</a> </p>
+
+		  <div id="downloads"></div>
+	  </div>
         </div>
       </div>
 
@@ -244,7 +481,6 @@
 
 
 
-      <div class='banner tall-banner' style='background-image: url(img/berlin-1900-5.jpg); background-position: center bottom; background-size: cover;'><div class="outer-fader"><div class="column inner-fader"></div></div></div>
 
 
 
@@ -255,58 +491,46 @@
 
 
 
-
-
-
-
-
-
-
-      <div id="target-social"></div>
       <div class="bar bar-white"> 
         <div class="column text-centered">
-          <h2>Social-Media</h2>
-
-          <div id="content-social" style="margin: auto; max-width: 600px !important; width: 600px !important;">
+          <div id="content-social" style="border: 1px solid #eee; min-height: 10em; margin: auto; max-width: 900px !important; width: 900px !important;">
             <a class="twitter-timeline" data-height="600" href="https://twitter.com/ParkplatzT?ref_src=twsrc%5Etfw">Tweets by ParkplatzT</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           </div>
-
-        </div>
-
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div class='banner' style='position: relative; background-image: url(img/berlin-1900-2.jpg); background-position: center bottom;'>
-        <div class="outer-fader">
-          <div class="column inner-fader">
-          </div>
         </div>
       </div>
+
+
+
+
+
+
+
 
 
 
     <div id="footer">
       <div class="column">
+        <img style="margin-top: 2em; height: 10em;" alt="logo" id="logo-footer" src="img/logo320.png">
+	<br>
+	<div style="color: #999; padding-right: 1em; text-align: right; vertical-align: top;">
+	Parkplatz-Transform ist ein Projekt von...
+	</div>
+	<br>
+	<br>
+	<a href="http://www.berliner-strassen-fuer-alle.de/" target="_newtab"><img alt="berl-str-logo" id="berl-str-logo" src="img/berliner-str-fuer-alle-logo.jpeg" style="width: 10em; display: inline;"></a>
+	<div style="color: #999; padding-left: 1em; padding-right: 1em; text-align: center; vertical-align: top;">
+	...in Zusammenarbeit mit...
+	</div>
+	<a href="https://changing-cities.org/" target="_newtab"><img alt="changing-cities-logo" id="changing-cities-logo" src="img/changing-cities-logo.svg" style="margin-right: 3em; width: 11em; display: inline;"></a>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
         <div id="twitter">
           <a href="https://twitter.com/ParkplatzT?ref_src=twsrc%5Etfw" data-size="large" data-show-screen-name="false" data-show-count="false" class="align-bottom">Follow @ParkplatzT</a>
@@ -321,17 +545,18 @@
           <a href="mailto:parkplatztransform@riseup.net">eMail</a>
         </div>
 
+        <div>
+          <a style="" href="mailto:magnus.leuthner@googlemail.com">webdesign</a>
+        </div>
+
         <div style="display: none;" id="languages">
           <img alt='german' id="lang-german" src="img/lang-german.png">
           <img alt='english' id="lang-english" src="img/lang-english.png">
         </div>
-
-        <img alt="berl-str-logo" id="berl-str-logo" src="img/logo-berl-str.jpg" style="display: inline;">
-
       </div>
 
-    </div>
-
+    </div> <!-- content -->
+    </div> <!-- container -->
 
 
 
@@ -343,8 +568,8 @@
 
 
     <script src="js/d3.js?v=1.0.0"></script>
-    <script src="js/slideshow.js?v=1.0.5"></script>
-    <script src="js/main.js?v=1.0.10"></script>
+    <script src="js/slideshow.js?v=1.0.7"></script>
+    <script src="js/main.js?v=1.0.17"></script>
 
   </body>
 

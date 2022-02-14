@@ -6,7 +6,7 @@
   const DATES_PAST_URL = "https://x-transform-backend.kontrollfeld.net/dates-past";
   const DOWNLOADS_URL = "https://x-transform-backend.kontrollfeld.net/downloads";
 
-  const PAGES = ["images", "downloads", "news", "social"];
+  const PAGES = ["downloads", "news", "media", "results", "example"];
 
   var cars2soccer = function(cars) {
     return Math.floor(cars * PARKING_SIZE / SOCCER_FIELD_SIZE * 10)/10;
@@ -74,52 +74,90 @@
       });
   }
 
-  var d3Map = d3.select("#berlin-map");
-  var districtTooltip = d3Map
-    .append("div")
-      .style("border-radius", "2em")
-      .style("border", "1px solid #666")
-      .style("z-index", "5")
-      //.style("width", "500px")
-      .style("margin", "1em")
-      .style("padding", "1em")
-      .style("background-color", "white")
-      .style("filter", "drop-shadow(0px 0px 0.5em #999)")
-      .style("position", "absolute")
-      .style("visibility", "hidden")
-      .text("");
+      var formatDate = function(d) {
+        var months = {
+          1: "Januar",
+          2: "Februar",
+          3: "März",
+          4: "April",
+          5: "Mai",
+          6: "Juni",
+          7: "Juli",
+          8: "August",
+          9: "September",
+          10: "Oktober",
+          11: "November",
+          12: "Dezember",
+        };
+        if( !d ) { return ""; }
+        var split = d.split("-");
+        if( split.length == 3 ) {
+          return split[2] + ". " + months[parseInt(split[1])] + " " + split[0];
+        }
+        return d;
+      }
 
-  var circleTooltip = d3Map
-    .append("div")
-      .attr("id", "circle-popup")
-      .text("");
+      var formatDateBody = function(s) {
+	  const regex = /[*]{10,}/g;
+	  var newS = s.replaceAll(regex, '<hr>');
+	      //console.log(s);
+	      //console.log(newS);
+	  return newS;
+      };
 
-  /////////////////////////////////////////
-
-  var mouseX;
-  var mouseY;
-  document.addEventListener("mousemove", function(e) {
-     mouseX = e.offsetX;
-     mouseY = e.offsetY;
-  });
-
-  var stats = {};
   var district2dates = {};
+  var buildMap = function() {
+	  var d3Map = d3.select("#berlin-map");
+	  if( !d3Map ) { return false; }
 
-  const PARKING_SIZE = 15;
-  const TEMPELHOFER_FELD_SIZE = 3000000;
-  const SOCCER_FIELD_SIZE = 7140;;
+	  var districtTooltip = d3Map
+	    .append("div")
+	      .style("border-radius", "2em")
+	      .style("border", "1px solid #666")
+	      .style("z-index", "5")
+	      //.style("width", "500px")
+	      .style("margin", "1em")
+	      .style("padding", "1em")
+	      .style("background-color", "white")
+	      .style("filter", "drop-shadow(0px 0px 0.5em #999)")
+	      .style("position", "absolute")
+	      .style("visibility", "hidden")
+	      .text("");
 
-  var generateStats = function(size) {
-    return {
-      parking: Math.round(Math.random()*size/4),
-      roadsCounted: Math.round(Math.random()*size/40),
-    };
-  }
+	  var circleTooltip = d3Map
+	    .append("div")
+	      .attr("id", "circle-popup")
+	      .text("");
+
+	  /////////////////////////////////////////
+
+	  var mouseX;
+	  var mouseY;
+	  document.addEventListener("mousemove", function(e) {
+	     mouseX = e.offsetX;
+	     mouseY = e.offsetY;
+	  });
+
+	  var stats = {};
+
+	  const PARKING_SIZE = 15;
+	  const TEMPELHOFER_FELD_SIZE = 3000000;
+	  const SOCCER_FIELD_SIZE = 7140;;
+
+	  var generateStats = function(size) {
+	    return {
+	      parking: Math.round(Math.random()*size/4),
+	      roadsCounted: Math.round(Math.random()*size/40),
+	    };
+	  }
+
+	  return true;
+  };
 
   var initMap = function() {
     d3.xml("img/berlin-map.svg").then(data => {
       var domMap = d3.select("#berlin-map");
+      if( !domMap || !domMap.node() ) { return; }
       //console.log("data", data.documentElement);
       domMap.node().append(data.documentElement);
 
@@ -264,6 +302,13 @@
               points.push( points[0] );
 
               var xhrData = new XMLHttpRequest();
+              xhrData.onerror = function (e) {
+		console.log("error", e);
+	        var o = document.getElementById('cars-to-soccer-' + district);
+                if( o ) { o.innerHTML = "?"; }
+                o = document.getElementById('number-of-cars-' + district);
+                if( o ) { o.innerHTML = "?"; }
+	      };
               xhrData.onload = function () {
                 if (xhrData.status >= 200 && xhrData.status < 300) {
                   try {
@@ -343,6 +388,7 @@
 
       /////////////////////////////////
 
+	    /*
       var renderDates = function() {
         var allDates = [];
         var districts = Object.keys(district2dates);
@@ -379,6 +425,7 @@
 
             var i = 0;
             areaDates.forEach( function(date) {
+		    /*
               if( i > 0 && i < areaDates.length ) {
                 circleTooltip.append("hr").style("margin-top", "2em").style("margin-bottom", "2em");
               }
@@ -392,6 +439,7 @@
                 "<p style='line-height: 1.5em;'>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "" ) + "</p>" +
                 "<div>" + date["body"][0]["processed"] + "</div>"
               );
+	      * /
               i += 1;
             });
           })
@@ -407,80 +455,66 @@
             //circleTooltip.style("visibility", "hidden");
           });
       }
+      */
 
       /////////////////////////////////
 
       var pastDatesLoaded = false;
       var upcomingDatesLoaded = false;
-      var formatDate = function(d) {
-        var months = {
-          1: "Januar",
-          2: "Februar",
-          3: "März",
-          4: "April",
-          5: "Mai",
-          6: "Juni",
-          7: "Juli",
-          8: "August",
-          9: "September",
-          10: "Oktober",
-          11: "November",
-          12: "Dezember",
-        };
-        if( !d ) { return ""; }
-        var split = d.split("-");
-        if( split.length == 3 ) {
-          return split[2] + ". " + months[parseInt(split[1])] + " " + split[0];
-        }
-        return d;
-      }
-
       var xhrDates = new XMLHttpRequest();
       xhrDates.onload = function () {
         if (xhrDates.status >= 200 && xhrDates.status < 300) {
 
           var dates = JSON.parse(xhrDates.response);
+	  var upcomingEvents = [];
 
           for( var i = 0 ; i < dates.length ; i++ ) {
             var date = dates[i];
-            date.isUpcomingEvent = true;
-            date.isPastEvent = false;
+
+	    date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
             if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
               var n = date["field_neighbourhood"][0]["value"];
               if( !district2dates[n] ) { district2dates[n] = []; }
               district2dates[n].push( date );
             }
+	    if( date.isUpcomingEvent ) {
+	      upcomingEvents.add( date );
+	    }
           }
 
           //console.log('dates', dates);
 
-          var upcomingEvents = document.getElementById("upcoming-events");
-          upcomingEvents.innerHTML = "";
-          if( dates.length == 0 ) {
-            upcomingEvents.innerHTML = "Momentan keine kommenden Veranstaltungen - schau in ein paar Tagen nochmal rein!";
+          var upcomingEventsEl = document.getElementById("upcoming-events");
+          upcomingEventsEl.innerHTML = "";
+          if( upcomingEvents.length == 0 ) {
+            //upcomingEventsEl.innerHTML = "Momentan keine kommenden Veranstaltungen - schau in ein paar Tagen nochmal rein!";
+            upcomingEventsEl.innerHTML =
+	      "<div style='border-radius: 2em; padding: 1em; background-color: #ddd;'>" + 
+              "<h3>Momentan keine geplanten Veranstaltungen</h3><h5>Schau in ein paar Tagen nochmal vorbei!</h5>";
           }
-          var i = 0;
-          dates.forEach( function(date) {
-            if( i > 0 && i < dates.length ) {
-              var hr = document.createElement("hr");
+          for( var i = 0 ; i < upcomingEvents.length ; i++ ) {
+            if( i > 0 && i < upcomingEvents.length ) {
+              var hr = document.createElement("div");
               hr.style.cssText = 'margin-top: 2em; margin-bottom: 2em;';
-              upcomingEvents.appendChild(hr);
+              upcomingEventsEl.appendChild(hr);
             }
             var o = document.createElement("div");
             //console.log('date', date);
             o.innerHTML =
+	      "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
               "<h3>" + date["title"][0]["value"] +  "</h3>" + 
               "<h4>" + formatDate(date["field_date"][0]["value"]) + " " + date["field_time"][0]["value"] + "</h4>" + 
-              "<p>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "" ) +  "</p>" + 
-              "<div>" + date["body"][0]["processed"] + "</div>";
+              "<h5>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "<br>" ) +  "</h5>" + 
+              "<div>" + formatDateBody(date["body"][0]["processed"]) + "</div>" + 
+	      "</div>";
 
-            upcomingEvents.appendChild(o);
+            upcomingEventsEl.appendChild(o);
             i += 1;
-          });
-
-          if( pastDatesLoaded ) {
-            renderDates();
           }
+
+          //if( pastDatesLoaded ) {
+            //renderDates();
+          //}
           upcomingDatesLoaded = true;
         }
       };
@@ -496,8 +530,7 @@
           var dates = JSON.parse(xhrPastDates.response);
           for( var i = 0 ; i < dates.length ; i++ ) {
             var date = dates[i];
-            date.isUpcomingEvent = false;
-            date.isPastEvent = true;
+	    date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
             if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
               var n = date["field_neighbourhood"][0]["value"];
               if( !district2dates[n] ) { district2dates[n] = []; }
@@ -506,34 +539,190 @@
           }
 
           var pastEvents = document.getElementById("past-events");
-          pastEvents.innerHTML = "";
+          pastEvents.innerHTML = "<hr><h3 style='margin-bottom: 2em; display: inline-block;'>Vergangene Veranstaltungen</h3>";
           var i = 0;
           dates.forEach( function(date) {
             if( i > 0 && i < dates.length ) {
-              var hr = document.createElement("hr");
+              var hr = document.createElement("div");
               hr.style.cssText = 'margin-top: 2em; margin-bottom: 2em;';
               pastEvents.appendChild(hr);
             }
             var o = document.createElement("div");
             //console.log('date', date);
             o.innerHTML =
+	      "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
               "<h3>" + date["title"][0]["value"] +  "</h3>" + 
-              "<h4>" + date["field_date"][0]["value"] + " - " + date["field_time"][0]["value"] + "</h4>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "" ) +
-              date["body"][0]["processed"];
+              "<h4>" + formatDate(date["field_date"][0]["value"]) + " - " + date["field_time"][0]["value"] + "</h4><br>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "" ) +
+              formatDateBody(date["body"][0]["processed"]) +
+	      "</div>";
 
             pastEvents.appendChild(o);
             i += 1;
           });
 
-          if( upcomingDatesLoaded ) {
-            renderDates();
-          }
+          //if( upcomingDatesLoaded ) {
+            //renderDates();
+          //}
           pastDatesLoaded = true;
         }
       };
       xhrPastDates.open('GET', DATES_PAST_URL, true);
       xhrPastDates.send('');
     });
+  };
+
+  var initDates = function() {
+      var xhrDates = new XMLHttpRequest();
+      xhrDates.onload = function () {
+        if (xhrDates.status >= 200 && xhrDates.status < 300) {
+
+          var dates = JSON.parse(xhrDates.response);
+	  var upcomingEvents = [];
+
+          for( var i = 0 ; i < dates.length ; i++ ) {
+            var date = dates[i];
+
+	    date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
+            if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
+              var n = date["field_neighbourhood"][0]["value"];
+              if( !district2dates[n] ) { district2dates[n] = []; }
+              district2dates[n].push( date );
+            }
+	    if( date.isUpcomingEvent ) {
+	      upcomingEvents.add( date );
+	    }
+          }
+
+          var upcomingEventsEl = document.getElementById("upcoming-events");
+          upcomingEventsEl.innerHTML = "";
+          if( upcomingEvents.length == 0 ) {
+            upcomingEventsEl.innerHTML =
+	      "<div style='border-radius: 2em; padding: 1em; background-color: #ddd;'>" + 
+              "<h3>Momentan keine geplanten Veranstaltungen</h3><h5>Schau in ein paar Tagen nochmal vorbei!</h5>";
+          }
+          for( var i = 0 ; i < upcomingEvents.length ; i++ ) {
+            if( i > 0 && i < upcomingEvents.length ) {
+              var hr = document.createElement("div");
+              hr.style.cssText = 'margin-top: 2em; margin-bottom: 2em;';
+              upcomingEventsEl.appendChild(hr);
+            }
+            var o = document.createElement("div");
+            o.innerHTML =
+	      "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
+              "<h3>" + date["title"][0]["value"] +  "</h3>" + 
+              "<h4>" + formatDate(date["field_date"][0]["value"]) + " " + date["field_time"][0]["value"] + "</h4>" + 
+              "<h5>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "<br>" ) +  "</h5>" + 
+              "<div>" + formatDateBody(date["body"][0]["processed"]) + "</div>" + 
+	      "</div>";
+
+            upcomingEventsEl.appendChild(o);
+            i += 1;
+          }
+
+          upcomingDatesLoaded = true;
+        }
+      };
+      xhrDates.open('GET', DATES_URL, true);
+      xhrDates.send('');
+
+      ///////////////////////////////////////
+
+      var xhrPastDates = new XMLHttpRequest();
+      xhrPastDates.onload = function () {
+        if (xhrPastDates.status >= 200 && xhrPastDates.status < 300) {
+
+          var dates = JSON.parse(xhrPastDates.response);
+          for( var i = 0 ; i < dates.length ; i++ ) {
+            var date = dates[i];
+	    date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
+            if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
+              var n = date["field_neighbourhood"][0]["value"];
+              if( !district2dates[n] ) { district2dates[n] = []; }
+              district2dates[n].push( date );
+            }
+          }
+
+          var pastEvents = document.getElementById("past-events");
+          pastEvents.innerHTML = "<hr><h4 style='margin-bottom: 2em; display: inline-block;'>Vergangene Veranstaltungen</h4><br>";
+          var i = 0;
+          dates.forEach( function(date) {
+            if( i > 0 && i < dates.length ) {
+              var hr = document.createElement("div");
+              hr.style.cssText = 'margin-top: 2em; margin-bottom: 2em;';
+              pastEvents.appendChild(hr);
+            }
+            var o = document.createElement("div");
+            o.innerHTML =
+	      "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
+              "<h3>" + date["title"][0]["value"] +  "</h3>" + 
+              "<h4>" + formatDate(date["field_date"][0]["value"]) + " - " + date["field_time"][0]["value"] + "</h4><br>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "" ) +
+              formatDateBody(date["body"][0]["processed"]) +
+	      "</div>";
+
+            pastEvents.appendChild(o);
+            i += 1;
+          });
+
+          pastDatesLoaded = true;
+        }
+      };
+    xhrPastDates.open('GET', DATES_PAST_URL, true);
+    xhrPastDates.send('');
+  };
+
+  var initPresentation = function() {
+
+    const PRESENTATION_URL = 'https://parkplatztransform-hp-strapi.herokuapp.com/api/case-studies?populate=*';
+
+    var presPos = 0;
+
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        var presentation = document.getElementById("presentation");
+
+        var res = JSON.parse(xhr.response);
+        var imgs = res["data"][0]["attributes"]["image"]["data"];
+        imgs.sort( function(a, b) {
+          var an = a["attributes"]["name"].toLowerCase();
+          var bn = b["attributes"]["name"].toLowerCase();
+          if( an.length == bn.length ) {
+                  return an < bn ? -1 : +1;
+          }
+          return (an.length - bn.length);
+        });
+        for( var i = 0 ; i < imgs.length ; i++ ) {
+          console.log("image", imgs[i]);
+        }
+
+        var showSlide = function(i) {
+                var url = imgs[i]["attributes"]["url"];
+                console.log("show slide " + i + ": " + url);
+                presentation.style.backgroundImage = "url('" + url + "')";
+        };
+
+        presentation.style.display = "table-cell";
+	var presNext = function(e) {
+                presPos++;
+                if( presPos >= imgs.length ) { presPos = imgs.length-1; }
+                showSlide(presPos);
+        };
+        var presPrev = function(e) {
+                presPos--;
+                if( presPos < 0 ) { presPos = 0; }
+                showSlide(presPos);
+                e.preventDefault();
+                return false;
+        };
+        presentation.addEventListener("click", presNext);
+        presentation.addEventListener("contextmenu", presPrev);
+	document.getElementById( "pres-next" ).addEventListener("click", presNext);
+	document.getElementById( "pres-prev" ).addEventListener("click", presPrev);
+        showSlide(0);
+      }
+    };
+    xhr.open('GET', PRESENTATION_URL, true);
+    xhr.send('');
   };
 
   var initDownloads = function() {
@@ -550,7 +739,7 @@
             downloadsEl.appendChild(document.createElement("br"));
           }
           var o = document.createElement("div");
-          o.innerHTML = "<a href='" + dl["field_pdf"][0]["url"] + "'>" + dl["title"][0]["value"] + "</a>";
+          o.innerHTML = "<img src='img/pdf.png' style='height: 1.5em; margin-right: 0.5em;'><a style='vertical-align: super;' href='" + dl["field_pdf"][0]["url"] + "'>" + dl["title"][0]["value"] + "</a>";
           downloadsEl.appendChild(o);
           i += 1;
         });
@@ -591,7 +780,21 @@
     xhrTexts.send('');
   };
 
+  var updateMenuHeight = function() {
+    	//console.log('scrollY', window.scrollY);
+	var h = document.getElementById( 'header' );
+	if( window.scrollY > 200 ) {
+          h.style.height = '2em';
+	} else {
+          h.style.height = '5em';
+	}
+  };
+
   var init = function() {
+    document.addEventListener('scroll', function(e) {
+    	updateMenuHeight();
+    });
+
     PAGES.forEach( function(p, i) {
       document.getElementById("menu-" + p).addEventListener('click', function(ev) {
         scrollToTargetAdjusted("target-" + p);
@@ -599,27 +802,20 @@
     });
 
     initDownloads();
-    initMap();
     initSlideShow();
+    initPresentation();
     initTexts();
+    //var res = buildMap();
+    //if( res ) { initMap(); }
+    initDates();
 
-    window.onscroll = function(ev) {
-      /*
-      var B = document.body; //IE 'quirks'
-      var D = document.documentElement; //IE with doctype
-      D = (D.clientHeight)? D: B;
-
-      console.log(D.scrollTop);
-      if (D.scrollTop < 100) {
-        document.getElementById("header").style.height = "5em";
-      } else {
-        document.getElementById("header").style.height = "2em";
-      }
-      */
-    };
-
+    // fixes firefox iframe bug
+    document.getElementById('map-iframe').src = 'http://staging.app.xtransform.org/?embedded=true';
   };
 
   init();
 
 })();
+
+
+
