@@ -582,16 +582,19 @@
           for( var i = 0 ; i < dates.length ; i++ ) {
             var date = dates[i];
 
-	    date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
+	    var eventDate = Date.parse(date["field_date"][0]["value"]);
+	    date.isUpcomingEvent = (eventDate >= Date.now());
+	    //console.log("eventDate", date["field_date"][0]["value"], eventDate.getTime(), Date.now(), date.isUpcomingEvent );
             if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
               var n = date["field_neighbourhood"][0]["value"];
               if( !district2dates[n] ) { district2dates[n] = []; }
               district2dates[n].push( date );
             }
 	    if( date.isUpcomingEvent ) {
-	      upcomingEvents.add( date );
+	      upcomingEvents.push( date );
 	    }
           }
+          console.log('upcomingEvents', upcomingEvents);
 
           var upcomingEventsEl = document.getElementById("upcoming-events");
           upcomingEventsEl.innerHTML = "";
@@ -601,6 +604,7 @@
               "<h3>Momentan keine geplanten Veranstaltungen</h3><h5>Schau in ein paar Tagen nochmal vorbei!</h5>";
           }
           for( var i = 0 ; i < upcomingEvents.length ; i++ ) {
+	    var date = upcomingEvents[i];
             if( i > 0 && i < upcomingEvents.length ) {
               var hr = document.createElement("div");
               hr.style.cssText = 'margin-top: 2em; margin-bottom: 2em;';
@@ -616,7 +620,6 @@
 	      "</div>";
 
             upcomingEventsEl.appendChild(o);
-            i += 1;
           }
 
           upcomingDatesLoaded = true;
