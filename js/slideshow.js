@@ -1,7 +1,7 @@
 var initSlideShow = function() {
 
-  const IMAGES_BASE_URL = 'https://x-transform-backend.kontrollfeld.net';
-  const IMAGES_URL = IMAGES_BASE_URL + '/images';
+  const DATA_URL = 'data-new/';
+  const IMAGES_URL = DATA_URL + 'images.json';
 
   var Slideshow = function() {
     var slideIndex = 0;
@@ -69,7 +69,7 @@ var initSlideShow = function() {
           dots.appendChild(e);
           slides.insertAdjacentHTML('beforeend',
               '<div class="slideshow-slide fade">' +
-                '<img src="' + IMAGES_BASE_URL + img["field_images_large"] + '">' +
+                '<img src="' + DATA_URL + img["field_images_large"] + '">' +
                 '<div class="text">' + img["title"] + (img["field_image_credits"] ? " (<i>" + img["field_image_credits"] + "</i>)" : "" ) + '</div>'+
               '</div>');
         })(i);

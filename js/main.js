@@ -1,10 +1,11 @@
 
 (function() {
 
-  const TEXTS_URL = "https://x-transform-backend.kontrollfeld.net/basic-texts";
-  const DATES_URL = "https://x-transform-backend.kontrollfeld.net/dates";
-  const DATES_PAST_URL = "https://x-transform-backend.kontrollfeld.net/dates-past";
-  const DOWNLOADS_URL = "https://x-transform-backend.kontrollfeld.net/downloads";
+  const DATA_URL = "data-new/";
+  const TEXTS_URL = DATA_URL + "basic-texts.json";
+  const DATES_URL = DATA_URL + "dates.json";
+  const DATES_PAST_URL = DATA_URL + "dates-past.json";
+  const DOWNLOADS_URL = DATA_URL + "downloads.json";
 
   const PAGES = ["downloads", "news", "media", "results", "example"];
 
@@ -98,60 +99,60 @@
       }
 
       var formatDateBody = function(s) {
-	  const regex = /[*]{10,}/g;
-	  var newS = s.replaceAll(regex, '<hr>');
-	      //console.log(s);
-	      //console.log(newS);
-	  return newS;
-      };
+      const regex = /[*]{10,}/g;
+      var newS = s.replaceAll(regex, '<hr>');
+          //console.log(s);
+          //console.log(newS);
+      return newS;
+        };
 
-  var district2dates = {};
-  var buildMap = function() {
-	  var d3Map = d3.select("#berlin-map");
-	  if( !d3Map ) { return false; }
+      var district2dates = {};
+      var buildMap = function() {
+      var d3Map = d3.select("#berlin-map");
+      if( !d3Map ) { return false; }
 
-	  var districtTooltip = d3Map
-	    .append("div")
-	      .style("border-radius", "2em")
-	      .style("border", "1px solid #666")
-	      .style("z-index", "5")
-	      //.style("width", "500px")
-	      .style("margin", "1em")
-	      .style("padding", "1em")
-	      .style("background-color", "white")
-	      .style("filter", "drop-shadow(0px 0px 0.5em #999)")
-	      .style("position", "absolute")
-	      .style("visibility", "hidden")
-	      .text("");
+      var districtTooltip = d3Map
+        .append("div")
+          .style("border-radius", "2em")
+          .style("border", "1px solid #666")
+          .style("z-index", "5")
+          //.style("width", "500px")
+          .style("margin", "1em")
+          .style("padding", "1em")
+          .style("background-color", "white")
+          .style("filter", "drop-shadow(0px 0px 0.5em #999)")
+          .style("position", "absolute")
+          .style("visibility", "hidden")
+          .text("");
 
-	  var circleTooltip = d3Map
-	    .append("div")
-	      .attr("id", "circle-popup")
-	      .text("");
+      var circleTooltip = d3Map
+        .append("div")
+          .attr("id", "circle-popup")
+          .text("");
 
-	  /////////////////////////////////////////
+      /////////////////////////////////////////
 
-	  var mouseX;
-	  var mouseY;
-	  document.addEventListener("mousemove", function(e) {
-	     mouseX = e.offsetX;
-	     mouseY = e.offsetY;
-	  });
+      var mouseX;
+      var mouseY;
+      document.addEventListener("mousemove", function(e) {
+         mouseX = e.offsetX;
+         mouseY = e.offsetY;
+      });
 
-	  var stats = {};
+      var stats = {};
 
-	  const PARKING_SIZE = 15;
-	  const TEMPELHOFER_FELD_SIZE = 3000000;
-	  const SOCCER_FIELD_SIZE = 7140;;
+      const PARKING_SIZE = 15;
+      const TEMPELHOFER_FELD_SIZE = 3000000;
+      const SOCCER_FIELD_SIZE = 7140;;
 
-	  var generateStats = function(size) {
-	    return {
-	      parking: Math.round(Math.random()*size/4),
-	      roadsCounted: Math.round(Math.random()*size/40),
-	    };
-	  }
+      var generateStats = function(size) {
+        return {
+          parking: Math.round(Math.random()*size/4),
+          roadsCounted: Math.round(Math.random()*size/40),
+        };
+      }
 
-	  return true;
+      return true;
   };
 
   var initMap = function() {
@@ -303,12 +304,12 @@
 
               var xhrData = new XMLHttpRequest();
               xhrData.onerror = function (e) {
-		console.log("error", e);
-	        var o = document.getElementById('cars-to-soccer-' + district);
-                if( o ) { o.innerHTML = "?"; }
-                o = document.getElementById('number-of-cars-' + district);
-                if( o ) { o.innerHTML = "?"; }
-	      };
+              console.log("error", e);
+              var o = document.getElementById('cars-to-soccer-' + district);
+                      if( o ) { o.innerHTML = "?"; }
+                      o = document.getElementById('number-of-cars-' + district);
+                      if( o ) { o.innerHTML = "?"; }
+              };
               xhrData.onload = function () {
                 if (xhrData.status >= 200 && xhrData.status < 300) {
                   try {
@@ -388,7 +389,7 @@
 
       /////////////////////////////////
 
-	    /*
+        /*
       var renderDates = function() {
         var allDates = [];
         var districts = Object.keys(district2dates);
@@ -425,7 +426,7 @@
 
             var i = 0;
             areaDates.forEach( function(date) {
-		    /*
+          /*
               if( i > 0 && i < areaDates.length ) {
                 circleTooltip.append("hr").style("margin-top", "2em").style("margin-bottom", "2em");
               }
@@ -439,7 +440,7 @@
                 "<p style='line-height: 1.5em;'>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "" ) + "</p>" +
                 "<div>" + date["body"][0]["processed"] + "</div>"
               );
-	      * /
+          * /
               i += 1;
             });
           })
@@ -466,20 +467,20 @@
         if (xhrDates.status >= 200 && xhrDates.status < 300) {
 
           var dates = JSON.parse(xhrDates.response);
-	  var upcomingEvents = [];
+          var upcomingEvents = [];
 
           for( var i = 0 ; i < dates.length ; i++ ) {
             var date = dates[i];
 
-	    date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
+            date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
             if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
               var n = date["field_neighbourhood"][0]["value"];
               if( !district2dates[n] ) { district2dates[n] = []; }
               district2dates[n].push( date );
             }
-	    if( date.isUpcomingEvent ) {
-	      upcomingEvents.add( date );
-	    }
+            if( date.isUpcomingEvent ) {
+              upcomingEvents.add( date );
+            }
           }
 
           //console.log('dates', dates);
@@ -489,7 +490,7 @@
           if( upcomingEvents.length == 0 ) {
             //upcomingEventsEl.innerHTML = "Momentan keine kommenden Veranstaltungen - schau in ein paar Tagen nochmal rein!";
             upcomingEventsEl.innerHTML =
-	      "<div style='border-radius: 2em; padding: 1em; background-color: #ddd;'>" + 
+              "<div style='border-radius: 2em; padding: 1em; background-color: #ddd;'>" + 
               "<h3>Momentan keine geplanten Veranstaltungen</h3><h5>Schau in ein paar Tagen nochmal vorbei!</h5>";
           }
           for( var i = 0 ; i < upcomingEvents.length ; i++ ) {
@@ -501,12 +502,12 @@
             var o = document.createElement("div");
             //console.log('date', date);
             o.innerHTML =
-	      "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
+            "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
               "<h3>" + date["title"][0]["value"] +  "</h3>" + 
               "<h4>" + formatDate(date["field_date"][0]["value"]) + " " + date["field_time"][0]["value"] + "</h4>" + 
               "<h5>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "<br>" ) +  "</h5>" + 
               "<div>" + formatDateBody(date["body"][0]["processed"]) + "</div>" + 
-	      "</div>";
+            "</div>";
 
             upcomingEventsEl.appendChild(o);
             i += 1;
@@ -530,7 +531,7 @@
           var dates = JSON.parse(xhrPastDates.response);
           for( var i = 0 ; i < dates.length ; i++ ) {
             var date = dates[i];
-	    date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
+            date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
             if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
               var n = date["field_neighbourhood"][0]["value"];
               if( !district2dates[n] ) { district2dates[n] = []; }
@@ -550,11 +551,11 @@
             var o = document.createElement("div");
             //console.log('date', date);
             o.innerHTML =
-	      "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
+            "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
               "<h3>" + date["title"][0]["value"] +  "</h3>" + 
               "<h4>" + formatDate(date["field_date"][0]["value"]) + " - " + date["field_time"][0]["value"] + "</h4><br>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "" ) +
               formatDateBody(date["body"][0]["processed"]) +
-	      "</div>";
+            "</div>";
 
             pastEvents.appendChild(o);
             i += 1;
@@ -577,22 +578,22 @@
         if (xhrDates.status >= 200 && xhrDates.status < 300) {
 
           var dates = JSON.parse(xhrDates.response);
-	  var upcomingEvents = [];
+          var upcomingEvents = [];
 
           for( var i = 0 ; i < dates.length ; i++ ) {
             var date = dates[i];
 
-	    var eventDate = Date.parse(date["field_date"][0]["value"]);
-	    date.isUpcomingEvent = (eventDate >= Date.now());
-	    //console.log("eventDate", date["field_date"][0]["value"], eventDate.getTime(), Date.now(), date.isUpcomingEvent );
+            var eventDate = Date.parse(date["field_date"][0]["value"]);
+            date.isUpcomingEvent = (eventDate >= Date.now());
+            //console.log("eventDate", date["field_date"][0]["value"], eventDate.getTime(), Date.now(), date.isUpcomingEvent );
             if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
               var n = date["field_neighbourhood"][0]["value"];
               if( !district2dates[n] ) { district2dates[n] = []; }
               district2dates[n].push( date );
             }
-	    if( date.isUpcomingEvent ) {
-	      upcomingEvents.push( date );
-	    }
+            if( date.isUpcomingEvent ) {
+              upcomingEvents.push( date );
+            }
           }
           console.log('upcomingEvents', upcomingEvents);
 
@@ -600,11 +601,11 @@
           upcomingEventsEl.innerHTML = "";
           if( upcomingEvents.length == 0 ) {
             upcomingEventsEl.innerHTML =
-	      "<div style='border-radius: 2em; padding: 1em; background-color: #ddd;'>" + 
+            "<div style='border-radius: 2em; padding: 1em; background-color: #ddd;'>" + 
               "<h3>Momentan keine geplanten Veranstaltungen</h3><h5>Schau in ein paar Tagen nochmal vorbei!</h5>";
           }
           for( var i = 0 ; i < upcomingEvents.length ; i++ ) {
-	    var date = upcomingEvents[i];
+            var date = upcomingEvents[i];
             if( i > 0 && i < upcomingEvents.length ) {
               var hr = document.createElement("div");
               hr.style.cssText = 'margin-top: 2em; margin-bottom: 2em;';
@@ -612,12 +613,12 @@
             }
             var o = document.createElement("div");
             o.innerHTML =
-	      "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
+            "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
               "<h3>" + date["title"][0]["value"] +  "</h3>" + 
               "<h4>" + formatDate(date["field_date"][0]["value"]) + " " + date["field_time"][0]["value"] + "</h4>" + 
               "<h5>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "<br>" ) +  "</h5>" + 
               "<div>" + formatDateBody(date["body"][0]["processed"]) + "</div>" + 
-	      "</div>";
+            "</div>";
 
             upcomingEventsEl.appendChild(o);
           }
@@ -637,7 +638,7 @@
           var dates = JSON.parse(xhrPastDates.response);
           for( var i = 0 ; i < dates.length ; i++ ) {
             var date = dates[i];
-	    date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
+            date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
             if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
               var n = date["field_neighbourhood"][0]["value"];
               if( !district2dates[n] ) { district2dates[n] = []; }
@@ -656,11 +657,11 @@
             }
             var o = document.createElement("div");
             o.innerHTML =
-	      "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
+              "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
               "<h3>" + date["title"][0]["value"] +  "</h3>" + 
               "<h4>" + formatDate(date["field_date"][0]["value"]) + " - " + date["field_time"][0]["value"] + "</h4><br>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "" ) +
               formatDateBody(date["body"][0]["processed"]) +
-	      "</div>";
+              "</div>";
 
             pastEvents.appendChild(o);
             i += 1;
@@ -675,7 +676,7 @@
 
   var initPresentation = function() {
 
-    const PRESENTATION_URL = 'https://parkplatztransform-hp-strapi.herokuapp.com/api/case-studies?populate=*';
+    const PRESENTATION_URL = DATA_URL + 'case-studies.json';
 
     var presPos = 0;
 
@@ -701,11 +702,11 @@
         var showSlide = function(i) {
                 var url = imgs[i]["attributes"]["url"];
                 console.log("show slide " + i + ": " + url);
-                presentation.style.backgroundImage = "url('" + url + "')";
+                presentation.style.backgroundImage = "url('" + (DATA_URL + url) + "')";
         };
 
         presentation.style.display = "table-cell";
-	var presNext = function(e) {
+        var presNext = function(e) {
                 presPos++;
                 if( presPos >= imgs.length ) { presPos = imgs.length-1; }
                 showSlide(presPos);
@@ -719,8 +720,8 @@
         };
         presentation.addEventListener("click", presNext);
         presentation.addEventListener("contextmenu", presPrev);
-	document.getElementById( "pres-next" ).addEventListener("click", presNext);
-	document.getElementById( "pres-prev" ).addEventListener("click", presPrev);
+        document.getElementById( "pres-next" ).addEventListener("click", presNext);
+        document.getElementById( "pres-prev" ).addEventListener("click", presPrev);
         showSlide(0);
       }
     };
@@ -742,7 +743,7 @@
             downloadsEl.appendChild(document.createElement("br"));
           }
           var o = document.createElement("div");
-          o.innerHTML = "<img src='img/pdf.png' style='height: 1.5em; margin-right: 0.5em;'><a style='vertical-align: super;' href='" + dl["field_pdf"][0]["url"] + "'>" + dl["title"][0]["value"] + "</a>";
+          o.innerHTML = "<img src='img/pdf.png' style='height: 1.5em; margin-right: 0.5em;'><a style='vertical-align: super;' href='" + (DATA_URL + 'files/' + dl["field_pdf"][0]["url"]) + "'>" + dl["title"][0]["value"] + "</a>";
           downloadsEl.appendChild(o);
           i += 1;
         });
@@ -784,18 +785,18 @@
   };
 
   var updateMenuHeight = function() {
-    	//console.log('scrollY', window.scrollY);
-	var h = document.getElementById( 'header' );
-	if( window.scrollY > 200 ) {
-          h.style.height = '2em';
-	} else {
-          h.style.height = '5em';
-	}
+    //console.log('scrollY', window.scrollY);
+    var h = document.getElementById( 'header' );
+    if( window.scrollY > 200 ) {
+            h.style.height = '2em';
+    } else {
+            h.style.height = '5em';
+    }
   };
 
   var init = function() {
     document.addEventListener('scroll', function(e) {
-    	updateMenuHeight();
+      updateMenuHeight();
     });
 
     PAGES.forEach( function(p, i) {
