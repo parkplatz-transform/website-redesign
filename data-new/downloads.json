@@ -1,0 +1,338 @@
+[
+   {
+      "body" : [],
+      "changed" : [
+         {
+            "format" : "Y-m-d\\TH:i:sP",
+            "value" : "2021-01-21T17:24:36+00:00"
+         }
+      ],
+      "created" : [
+         {
+            "format" : "Y-m-d\\TH:i:sP",
+            "value" : "2020-07-06T14:05:14+00:00"
+         }
+      ],
+      "default_langcode" : [
+         {
+            "value" : true
+         }
+      ],
+      "field_pdf" : [
+         {
+            "description" : "",
+            "display" : true,
+            "target_id" : 25,
+            "target_type" : "file",
+            "target_uuid" : "4db34d38-c270-4bd2-a530-a42ff8fe08c9",
+            "url" : "200704_PM_Z%C3%A4hlung%20Schillerkiez_Hermannstra%C3%9Fe_pdf.pdf"
+         }
+      ],
+      "langcode" : [
+         {
+            "value" : "en"
+         }
+      ],
+      "nid" : [
+         {
+            "value" : 40
+         }
+      ],
+      "path" : [
+         {
+            "alias" : null,
+            "langcode" : "en",
+            "pid" : null
+         }
+      ],
+      "promote" : [
+         {
+            "value" : false
+         }
+      ],
+      "revision_log" : [],
+      "revision_timestamp" : [
+         {
+            "format" : "Y-m-d\\TH:i:sP",
+            "value" : "2021-01-21T17:24:36+00:00"
+         }
+      ],
+      "revision_translation_affected" : [
+         {
+            "value" : true
+         }
+      ],
+      "revision_uid" : [
+         {
+            "target_id" : 2,
+            "target_type" : "user",
+            "target_uuid" : "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+            "url" : "/user/2"
+         }
+      ],
+      "status" : [
+         {
+            "value" : true
+         }
+      ],
+      "sticky" : [
+         {
+            "value" : false
+         }
+      ],
+      "title" : [
+         {
+            "value" : "Pressemitteilung Zählung Schillerkiez/Hermannstraße"
+         }
+      ],
+      "type" : [
+         {
+            "target_id" : "download_pdf",
+            "target_type" : "node_type",
+            "target_uuid" : "9339ad3f-6dcf-43c9-aca1-ca70257260f6"
+         }
+      ],
+      "uid" : [
+         {
+            "target_id" : 2,
+            "target_type" : "user",
+            "target_uuid" : "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+            "url" : "/user/2"
+         }
+      ],
+      "uuid" : [
+         {
+            "value" : "2c000082-c603-4c0c-84be-851eafef4a4e"
+         }
+      ],
+      "vid" : [
+         {
+            "value" : 95
+         }
+      ]
+   },
+   {
+      "body" : [],
+      "changed" : [
+         {
+            "format" : "Y-m-d\\TH:i:sP",
+            "value" : "2021-01-21T17:06:20+00:00"
+         }
+      ],
+      "created" : [
+         {
+            "format" : "Y-m-d\\TH:i:sP",
+            "value" : "2020-07-06T14:03:47+00:00"
+         }
+      ],
+      "default_langcode" : [
+         {
+            "value" : true
+         }
+      ],
+      "field_pdf" : [
+         {
+            "description" : "",
+            "display" : true,
+            "target_id" : 24,
+            "target_type" : "file",
+            "target_uuid" : "7dab4d74-1d55-48ac-9ab2-011060eb9243",
+            "url" : "200131_Gastbeitrag_mobilogisch_PpT_Pavlovic.pdf"
+         }
+      ],
+      "langcode" : [
+         {
+            "value" : "en"
+         }
+      ],
+      "nid" : [
+         {
+            "value" : 39
+         }
+      ],
+      "path" : [
+         {
+            "alias" : null,
+            "langcode" : "en",
+            "pid" : null
+         }
+      ],
+      "promote" : [
+         {
+            "value" : false
+         }
+      ],
+      "revision_log" : [],
+      "revision_timestamp" : [
+         {
+            "format" : "Y-m-d\\TH:i:sP",
+            "value" : "2021-01-21T17:06:20+00:00"
+         }
+      ],
+      "revision_translation_affected" : [
+         {
+            "value" : true
+         }
+      ],
+      "revision_uid" : [
+         {
+            "target_id" : 2,
+            "target_type" : "user",
+            "target_uuid" : "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+            "url" : "/user/2"
+         }
+      ],
+      "status" : [
+         {
+            "value" : true
+         }
+      ],
+      "sticky" : [
+         {
+            "value" : false
+         }
+      ],
+      "title" : [
+         {
+            "value" : "mobilogisch! Gastbeitrag von Natalie"
+         }
+      ],
+      "type" : [
+         {
+            "target_id" : "download_pdf",
+            "target_type" : "node_type",
+            "target_uuid" : "9339ad3f-6dcf-43c9-aca1-ca70257260f6"
+         }
+      ],
+      "uid" : [
+         {
+            "target_id" : 2,
+            "target_type" : "user",
+            "target_uuid" : "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+            "url" : "/user/2"
+         }
+      ],
+      "uuid" : [
+         {
+            "value" : "c0bf92bb-fe2f-485f-8adc-0f22f3417504"
+         }
+      ],
+      "vid" : [
+         {
+            "value" : 94
+         }
+      ]
+   },
+   {
+      "body" : [],
+      "changed" : [
+         {
+            "format" : "Y-m-d\\TH:i:sP",
+            "value" : "2019-12-03T15:27:27+00:00"
+         }
+      ],
+      "created" : [
+         {
+            "format" : "Y-m-d\\TH:i:sP",
+            "value" : "2019-12-03T15:27:05+00:00"
+         }
+      ],
+      "default_langcode" : [
+         {
+            "value" : true
+         }
+      ],
+      "field_pdf" : [
+         {
+            "description" : "",
+            "display" : true,
+            "target_id" : 12,
+            "target_type" : "file",
+            "target_uuid" : "e864e621-5c04-4c99-a52e-c5c0073a0f7a",
+            "url" : "Anschreiben%20Testz%C3%A4hlung%2015.12%20Ostseestra%C3%9Fe_orig.pdf"
+         }
+      ],
+      "langcode" : [
+         {
+            "value" : "en"
+         }
+      ],
+      "nid" : [
+         {
+            "value" : 16
+         }
+      ],
+      "path" : [
+         {
+            "alias" : null,
+            "langcode" : "en",
+            "pid" : null
+         }
+      ],
+      "promote" : [
+         {
+            "value" : false
+         }
+      ],
+      "revision_log" : [],
+      "revision_timestamp" : [
+         {
+            "format" : "Y-m-d\\TH:i:sP",
+            "value" : "2019-12-03T15:27:27+00:00"
+         }
+      ],
+      "revision_translation_affected" : [
+         {
+            "value" : true
+         }
+      ],
+      "revision_uid" : [
+         {
+            "target_id" : 2,
+            "target_type" : "user",
+            "target_uuid" : "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+            "url" : "/user/2"
+         }
+      ],
+      "status" : [
+         {
+            "value" : true
+         }
+      ],
+      "sticky" : [
+         {
+            "value" : false
+         }
+      ],
+      "title" : [
+         {
+            "value" : "Anschreiben Testzählung 15.12. Ostseestraße"
+         }
+      ],
+      "type" : [
+         {
+            "target_id" : "download_pdf",
+            "target_type" : "node_type",
+            "target_uuid" : "9339ad3f-6dcf-43c9-aca1-ca70257260f6"
+         }
+      ],
+      "uid" : [
+         {
+            "target_id" : 2,
+            "target_type" : "user",
+            "target_uuid" : "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+            "url" : "/user/2"
+         }
+      ],
+      "uuid" : [
+         {
+            "value" : "c4962294-dba2-4aba-b2bf-06531ddad311"
+         }
+      ],
+      "vid" : [
+         {
+            "value" : 21
+         }
+      ]
+   }
+]
