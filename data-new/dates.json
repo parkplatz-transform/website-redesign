@@ -1,1 +1,371 @@
-[{"nid":[{"value":76}],"uuid":[{"value":"c6215562-910a-4a01-b859-d63705a4e3b8"}],"vid":[{"value":201}],"langcode":[{"value":"en"}],"type":[{"target_id":"dates","target_type":"node_type","target_uuid":"5a122fba-4ab8-41c1-95a8-224fd6c8aa9d"}],"revision_timestamp":[{"value":"2022-08-07T09:26:56+00:00","format":"Y-m-d\\TH:i:sP"}],"revision_uid":[{"target_id":2,"target_type":"user","target_uuid":"fca75dd6-a932-4e9a-ad0a-6c3cf4077419","url":"\/user\/2"}],"revision_log":[],"status":[{"value":true}],"uid":[{"target_id":2,"target_type":"user","target_uuid":"fca75dd6-a932-4e9a-ad0a-6c3cf4077419","url":"\/user\/2"}],"title":[{"value":"Kartieren rund um den Breitscheidplatz"}],"created":[{"value":"2022-08-07T09:26:56+00:00","format":"Y-m-d\\TH:i:sP"}],"changed":[{"value":"2022-08-07T09:26:56+00:00","format":"Y-m-d\\TH:i:sP"}],"promote":[{"value":false}],"sticky":[{"value":false}],"default_langcode":[{"value":true}],"revision_translation_affected":[{"value":true}],"path":[{"alias":null,"pid":null,"langcode":"en"}],"body":[{"value":"\u003Cp\u003ETalent zum Flatterband halten oder gar die Parkplatz-App bef\u00fcllen? Lust auf 2 - 3h Feierabendrunde zu Fu\u00df rund um den Breitscheidplatz ? Dann kommt vorbei und helft mit, die letzten ~ 12 % des Berliner Innenstadtraums zu kartieren.\u0026nbsp;\u003C\/p\u003E\r\n\r\n\u003Cp\u003EWir kartieren den Parkraum in ChaWi dort wo wir keine Daten von externen Quellen haben.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EGarantiert mit neuem Blick auf den gewohnten Stadt- und Stra\u00dfenraum :-)\u003C\/p\u003E\r\n\r\n\u003Cp\u003EGibt noch zahlreiche Termine im August \u0026amp; September!\u003C\/p\u003E\r\n","format":"basic_html","processed":"\u003Cp\u003ETalent zum Flatterband halten oder gar die Parkplatz-App bef\u00fcllen? Lust auf 2 - 3h Feierabendrunde zu Fu\u00df rund um den Breitscheidplatz ? Dann kommt vorbei und helft mit, die letzten ~ 12 % des Berliner Innenstadtraums zu kartieren.\u00a0\u003C\/p\u003E\n\n\u003Cp\u003EWir kartieren den Parkraum in ChaWi dort wo wir keine Daten von externen Quellen haben.\u003C\/p\u003E\n\n\u003Cp\u003EGarantiert mit neuem Blick auf den gewohnten Stadt- und Stra\u00dfenraum :-)\u003C\/p\u003E\n\n\u003Cp\u003EGibt noch zahlreiche Termine im August \u0026amp; September!\u003C\/p\u003E","summary":""}],"field_date":[{"value":"2022-08-08"}],"field_day":[{"value":"08. August 2022"}],"field_is_plenum":[{"value":false}],"field_location":[{"value":"10789"}],"field_location_street_and_number":[{"value":"Breitscheidplatz, Neubau Kaiser-Wilhelm-Ged\u00e4chtniskirche, Ostseite"}],"field_neighbourhood":[{"value":"Charlottenburg"}],"field_time":[{"value":"18h"}]},{"nid":[{"value":77}],"uuid":[{"value":"11a2a07b-5636-4157-a2ec-62cbd1a22008"}],"vid":[{"value":203}],"langcode":[{"value":"en"}],"type":[{"target_id":"dates","target_type":"node_type","target_uuid":"5a122fba-4ab8-41c1-95a8-224fd6c8aa9d"}],"revision_timestamp":[{"value":"2022-08-07T09:31:54+00:00","format":"Y-m-d\\TH:i:sP"}],"revision_uid":[{"target_id":2,"target_type":"user","target_uuid":"fca75dd6-a932-4e9a-ad0a-6c3cf4077419","url":"\/user\/2"}],"revision_log":[],"status":[{"value":true}],"uid":[{"target_id":2,"target_type":"user","target_uuid":"fca75dd6-a932-4e9a-ad0a-6c3cf4077419","url":"\/user\/2"}],"title":[{"value":"Kartieren in Charlottenburg-Wilmerdorf"}],"created":[{"value":"2022-08-07T09:30:32+00:00","format":"Y-m-d\\TH:i:sP"}],"changed":[{"value":"2022-08-07T09:31:54+00:00","format":"Y-m-d\\TH:i:sP"}],"promote":[{"value":false}],"sticky":[{"value":false}],"default_langcode":[{"value":true}],"revision_translation_affected":[{"value":true}],"path":[{"alias":null,"pid":null,"langcode":"en"}],"body":[{"value":"\u003Cp\u003ETalent zum Flatterband halten oder gar die Parkplatz-App bef\u00fcllen? Lust auf 2 - 3h Feierabendrunde zu Fu\u00df? Dann kommt vorbei und helft mit, die letzten % des Berliner Innenstadtraums zu kartieren.\u0026nbsp;\u003C\/p\u003E\r\n\r\n\u003Cp\u003EWir kartieren den Parkraum in ChaWi dort wo wir keine Daten von externen Quellen haben.\u003C\/p\u003E\r\n\r\n\u003Cp\u003EGarantiert mit neuem Blick auf den gewohnten Stadt- und Stra\u00dfenraum :-)\u003C\/p\u003E\r\n\r\n\u003Cp\u003EGibt noch zahlreiche Termine im August \u0026amp; September!\u003C\/p\u003E\r\n","format":"basic_html","processed":"\u003Cp\u003ETalent zum Flatterband halten oder gar die Parkplatz-App bef\u00fcllen? Lust auf 2 - 3h Feierabendrunde zu Fu\u00df? Dann kommt vorbei und helft mit, die letzten % des Berliner Innenstadtraums zu kartieren.\u00a0\u003C\/p\u003E\n\n\u003Cp\u003EWir kartieren den Parkraum in ChaWi dort wo wir keine Daten von externen Quellen haben.\u003C\/p\u003E\n\n\u003Cp\u003EGarantiert mit neuem Blick auf den gewohnten Stadt- und Stra\u00dfenraum :-)\u003C\/p\u003E\n\n\u003Cp\u003EGibt noch zahlreiche Termine im August \u0026amp; September!\u003C\/p\u003E","summary":""}],"field_date":[{"value":"2022-08-22"}],"field_day":[{"value":"22. August 2022"}],"field_is_plenum":[{"value":false}],"field_location":[],"field_location_street_and_number":[{"value":"Wird bekannt gegeben - N\u00e4he Kurf\u00fcrstendamm "}],"field_neighbourhood":[{"value":"Charlottenburg"}],"field_time":[{"value":"18h"}]}]
+[
+   {
+      "body" : [
+         {
+            "format" : "basic_html",
+            "processed" : "<p><span style=''>Wir sind unserem gro&szlig;en Ziel sehr nah: Der Gro&szlig;teil der Parkpl&auml;tze im</span><br style=''><span style=''>S-Bahn-Ring ist inzwischen erfasst und in unsere App eingegeben. Es</span><br style=''><span style=''>fehlen nun noch ein paar Kieze in Charlottenburg-Wilmersdorf, f&uuml;r die</span><br style=''><span style=''>wir noch gar keine Daten haben.&nbsp;</span><br style=''><span style=''>&nbsp;</span><br style=''><span style=''>Es gibt eine feste Deadline: Am 31.10. werden wir unsere Ergebnisse</span><br style=''><span style=''>vorstellen (Einladung kommt bald!). Um den S-Bahn-Ring bis dahin wie</span><br style=''><span style=''>geplant voll zu kriegen ist noch einiges zu tun, aber mit Eurer</span><br style=''><span style=''>Unterst&uuml;tzung k&ouml;nnen wir es schaffen. Wir w&uuml;rden uns daher sehr freuen,</span><br style=''><span style=''>wenn ihr zu einer, besser noch mehreren, am besten allen Z&auml;hlungen dazu</span><br style=''><span style=''>kommen k&ouml;nntet ;-) !</span><br style=''><span style=''>&nbsp;</span><br style=''><span style=''>Das sind die Termine:</span><br style=''><span style=''>Sonntag, 18.9., 11 Uhr (diesen Sonntag, wir treffen uns am</span><br style=''><span style=''>Viktoria-Luise-Platz)</span><br style=''><span style=''>- Sonntag, 25.9., 14 Uhr</span><br style=''><span style=''>- Sonntag, 9.10., 14 Uhr</span><br style=''><span style=''>- Sonntag, 16.10., 11 Uhr</span><br style=''><span style=''>- Samstag, 22.10., 14 Uhr</span><br style=''><span style=''>&nbsp;</span><br style=''><span style=''>Au&szlig;erdem werden wir uns am 1.10. ab 11 Uhr treffen, um so lange zu</span><br style=''><span style=''>kartieren, wie wir lustig sind (mit Pausen). Zu diesem Termin w&auml;re es</span><br style=''><span style=''>besonders sch&ouml;n, wenn wir m&ouml;glichst viele w&auml;ren.</span><br style=''><span style=''>&nbsp;</span><br style=''><span style=''>Wie immer: bitte gebt uns Bescheid, wenn ihr dazu kommen k&ouml;nnt, damit</span><br style=''><span style=''>wir Euch &uuml;ber den Treffpunkt und eventuelle &Auml;nderungen informieren</span><br style=''><span style=''>k&ouml;nnen.</span></p>",
+            "summary" : "",
+            "value" : "<p>Talent zum Flatterband halten oder gar die Parkplatz-App befüllen? Lust auf 2 - 3h Feierabendrunde zu Fuß? Dann kommt vorbei und helft mit, die letzten % des Berliner Innenstadtraums zu kartieren.&nbsp;</p>\r\n\r\n<p>Wir kartieren den Parkraum in ChaWi dort wo wir keine Daten von externen Quellen haben.</p>\r\n\r\n<p>Garantiert mit neuem Blick auf den gewohnten Stadt- und Straßenraum :-)</p>\r\n\r\n<p>Gibt noch zahlreiche Termine im August &amp; September!</p>\r\n"
+         }
+      ],
+      "default_langcode" : [
+         {
+            "value" : true
+         }
+      ],
+      "field_date" : [
+         {
+            "value" : "2022-09-25"
+         }
+      ],
+      "field_is_plenum" : [
+         {
+            "value" : false
+         }
+      ],
+      "field_location" : [],
+      "field_location_street_and_number" : [
+         {
+            "value" : "Viktoria-Luise-Platz"
+         }
+      ],
+      "field_neighbourhood" : [
+         {
+            "value" : "Schöneberg"
+         }
+      ],
+      "field_time" : [
+         {
+            "value" : "14h"
+         }
+      ],
+      "langcode" : [
+         {
+            "value" : "en"
+         }
+      ],
+      "nid" : [
+         {
+            "value" : 77
+         }
+      ],
+      "path" : [
+         {
+            "alias" : null,
+            "langcode" : "en",
+            "pid" : null
+         }
+      ],
+      "promote" : [
+         {
+            "value" : false
+         }
+      ],
+      "revision_log" : [],
+      "revision_timestamp" : [
+         {
+            "format" : "Y-m-d\\TH:i:sP",
+            "value" : "2022-08-07T09:31:54+00:00"
+         }
+      ],
+      "revision_translation_affected" : [
+         {
+            "value" : true
+         }
+      ],
+      "revision_uid" : [
+         {
+            "target_id" : 2,
+            "target_type" : "user",
+            "target_uuid" : "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+            "url" : "/user/2"
+         }
+      ],
+      "status" : [
+         {
+            "value" : true
+         }
+      ],
+      "sticky" : [
+         {
+            "value" : false
+         }
+      ],
+      "title" : [
+         {
+            "value" : "Ergebnis-Vorstellung"
+         }
+      ],
+      "type" : [
+         {
+            "target_id" : "dates",
+            "target_type" : "node_type",
+            "target_uuid" : "5a122fba-4ab8-41c1-95a8-224fd6c8aa9d"
+         }
+      ],
+      "uid" : [
+         {
+            "target_id" : 2,
+            "target_type" : "user",
+            "target_uuid" : "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+            "url" : "/user/2"
+         }
+      ],
+      "uuid" : [
+         {
+            "value" : "11a2a07b-5636-4157-a2ec-62cbd1a22008"
+         }
+      ],
+      "vid" : [
+         {
+            "value" : 203
+         }
+      ]
+   },
+   {
+      "body" : [
+         {
+            "format" : "basic_html",
+            "processed" : "Wir treffen uns f&uuml;r's Plenum!",
+            "summary" : "",
+            "value" : "Plenum"
+         }
+      ],
+      "default_langcode" : [
+         {
+            "value" : true
+         }
+      ],
+      "field_date" : [
+         {
+            "value" : "2022-10-05"
+         }
+      ],
+      "field_is_plenum" : [
+         {
+            "value" : true
+         }
+      ],
+      "field_location" : [],
+      "field_location_street_and_number" : [
+         {
+            "value" : ""
+         }
+      ],
+      "field_neighbourhood" : [
+         {
+            "value" : ""
+         }
+      ],
+      "field_time" : [
+         {
+            "value" : ""
+         }
+      ],
+      "langcode" : [
+         {
+            "value" : "en"
+         }
+      ],
+      "nid" : [
+         {
+            "value" : 77
+         }
+      ],
+      "path" : [
+         {
+            "alias" : null,
+            "langcode" : "en",
+            "pid" : null
+         }
+      ],
+      "promote" : [
+         {
+            "value" : false
+         }
+      ],
+      "revision_log" : [],
+      "revision_timestamp" : [
+         {
+            "format" : "Y-m-d\\TH:i:sP",
+            "value" : "2022-08-07T09:31:54+00:00"
+         }
+      ],
+      "revision_translation_affected" : [
+         {
+            "value" : true
+         }
+      ],
+      "revision_uid" : [
+         {
+            "target_id" : 2,
+            "target_type" : "user",
+            "target_uuid" : "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+            "url" : "/user/2"
+         }
+      ],
+      "status" : [
+         {
+            "value" : true
+         }
+      ],
+      "sticky" : [
+         {
+            "value" : false
+         }
+      ],
+      "title" : [
+         {
+            "value" : "Plenum"
+         }
+      ],
+      "type" : [
+         {
+            "target_id" : "dates",
+            "target_type" : "node_type",
+            "target_uuid" : "5a122fba-4ab8-41c1-95a8-224fd6c8aa9d"
+         }
+      ],
+      "uid" : [
+         {
+            "target_id" : 2,
+            "target_type" : "user",
+            "target_uuid" : "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+            "url" : "/user/2"
+         }
+      ],
+      "uuid" : [
+         {
+            "value" : "11a2a07b-5636-4157-a2ec-62cbd1a22008"
+         }
+      ],
+      "vid" : [
+         {
+            "value" : 203
+         }
+      ]
+   },
+   {
+      "body" : [
+         {
+            "format" : "basic_html",
+            "processed" : "Wir treffen uns f&uuml;r's Plenum!",
+            "summary" : "",
+            "value" : "Plenum"
+         }
+      ],
+      "default_langcode" : [
+         {
+            "value" : true
+         }
+      ],
+      "field_date" : [
+         {
+            "value" : "2022-10-19"
+         }
+      ],
+      "field_is_plenum" : [
+         {
+            "value" : true
+         }
+      ],
+      "field_location" : [],
+      "field_location_street_and_number" : [
+         {
+            "value" : ""
+         }
+      ],
+      "field_neighbourhood" : [
+         {
+            "value" : ""
+         }
+      ],
+      "field_time" : [
+         {
+            "value" : ""
+         }
+      ],
+      "langcode" : [
+         {
+            "value" : "en"
+         }
+      ],
+      "nid" : [
+         {
+            "value" : 77
+         }
+      ],
+      "path" : [
+         {
+            "alias" : null,
+            "langcode" : "en",
+            "pid" : null
+         }
+      ],
+      "promote" : [
+         {
+            "value" : false
+         }
+      ],
+      "revision_log" : [],
+      "revision_timestamp" : [
+         {
+            "format" : "Y-m-d\\TH:i:sP",
+            "value" : "2022-08-07T09:31:54+00:00"
+         }
+      ],
+      "revision_translation_affected" : [
+         {
+            "value" : true
+         }
+      ],
+      "revision_uid" : [
+         {
+            "target_id" : 2,
+            "target_type" : "user",
+            "target_uuid" : "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+            "url" : "/user/2"
+         }
+      ],
+      "status" : [
+         {
+            "value" : true
+         }
+      ],
+      "sticky" : [
+         {
+            "value" : false
+         }
+      ],
+      "title" : [
+         {
+            "value" : "Plenum"
+         }
+      ],
+      "type" : [
+         {
+            "target_id" : "dates",
+            "target_type" : "node_type",
+            "target_uuid" : "5a122fba-4ab8-41c1-95a8-224fd6c8aa9d"
+         }
+      ],
+      "uid" : [
+         {
+            "target_id" : 2,
+            "target_type" : "user",
+            "target_uuid" : "fca75dd6-a932-4e9a-ad0a-6c3cf4077419",
+            "url" : "/user/2"
+         }
+      ],
+      "uuid" : [
+         {
+            "value" : "11a2a07b-5636-4157-a2ec-62cbd1a22008"
+         }
+      ],
+      "vid" : [
+         {
+            "value" : 203
+         }
+      ]
+   }
+]

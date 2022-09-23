@@ -695,9 +695,9 @@
           }
           return (an.length - bn.length);
         });
-        for( var i = 0 ; i < imgs.length ; i++ ) {
+        /*for( var i = 0 ; i < imgs.length ; i++ ) {
           console.log("image", imgs[i]);
-        }
+        }*/
 
         var showSlide = function(i) {
                 var url = imgs[i]["attributes"]["url"];
