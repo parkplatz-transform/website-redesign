@@ -4,7 +4,6 @@
   const DATA_URL = "data-new/";
   const TEXTS_URL = DATA_URL + "basic-texts.json";
   const DATES_URL = DATA_URL + "dates.json";
-  const DATES_PAST_URL = DATA_URL + "dates-past.json";
   const DOWNLOADS_URL = DATA_URL + "downloads.json";
 
   const PAGES = ["downloads", "news", "media", "results", "example"];
@@ -387,79 +386,6 @@
           d3.select(this).attr('fill-opacity', 1);
         });
 
-      /////////////////////////////////
-
-        /*
-      var renderDates = function() {
-        var allDates = [];
-        var districts = Object.keys(district2dates);
-        for( var k in districts ) {
-          for( var v in district2dates[districts[k]] ) {
-            allDates.push( district2dates[districts[k]][v] );
-          }
-        }
-
-        map
-          .selectAll('circle')
-          .data(allDates)
-          .join('circle')
-          .attr('cx', d => getDistrictPos(d) ? getDistrictPos(d).x-32 : null)
-          .attr('cy', d => getDistrictPos(d) ? getDistrictPos(d).y-32 : null)
-          .attr('r', 24)
-          .attr("fill-opacity", 0.6)
-          .attr("fill", d => getDistrictColor(d))
-          .style("background-color", d => getDistrictColor(d))
-          .attr('id', d => "past-date-" + d["field_neighbourhood"].length ? d["field_neighbourhood"][0]["value"] : "xxx" )
-          .on("click", function(ev, d) {
-            popupLocked = !popupLocked;
-            //circleTooltip.style("visibility", "hidden");
-          })
-          .on("mouseover", function(ev, d) {
-
-            circleTooltip.style("visibility", "visible");
-            circleTooltip.html("");
-            //console.log("ev", ev, d);
-
-            var district = ev.toElement ? ev.toElement.id : ev.target.id;
-            var areaDates = district2dates[district];
-            areaDates.sort((a, b) => (a["field_date"][0]["value"] < b["field_date"][0]["value"]) ? 1 : -1);
-
-            var i = 0;
-            areaDates.forEach( function(date) {
-          /*
-              if( i > 0 && i < areaDates.length ) {
-                circleTooltip.append("hr").style("margin-top", "2em").style("margin-bottom", "2em");
-              }
-              circleTooltip.append("div").style("position", "absolute").style("cursor", "pointer").style("top", "1em").style("right", "1em").html("X").on("click", function(ev, d) { 
-                popupLocked = false;
-                circleTooltip.style("visibility", "hidden");
-              } );
-              circleTooltip.append("div").style("z-index", 5).html(
-                "<h2 style=''>" + date["title"][0]["value"] +  "</h2>" + 
-                "<h4 style=''>" + date["field_date"][0]["value"] + " - " + date["field_time"][0]["value"] + "</h4>" + 
-                "<p style='line-height: 1.5em;'>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "" ) + "</p>" +
-                "<div>" + date["body"][0]["processed"] + "</div>"
-              );
-          * /
-              i += 1;
-            });
-          })
-          .on("mousemove", function(ev) {
-            circleTooltip.style("top", (ev.offsetY-300)+"px").style("left",(ev.offsetX+10)+"px");
-          })
-          .on("mouseout", function(ev) {
-            //d3.select(this).attr('fill-opacity', 0.5);
-            var district = ev.toElement ? ev.toElement.id : ev.target.id;
-            if( !popupLocked ) {
-              circleTooltip.style("visibility", "hidden");
-            }
-            //circleTooltip.style("visibility", "hidden");
-          });
-      }
-      */
-
-      /////////////////////////////////
-
       var pastDatesLoaded = false;
       var upcomingDatesLoaded = false;
       var xhrDates = new XMLHttpRequest();
@@ -472,9 +398,9 @@
           for( var i = 0 ; i < dates.length ; i++ ) {
             var date = dates[i];
 
-            date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
-            if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
-              var n = date["field_neighbourhood"][0]["value"];
+            date.isUpcomingEvent = (new Date(date["date"])).getTime() + (24*60*60*1000000) >= Date.now();
+            if( date && date["location"] ) {
+              var n = date["location"];
               if( !district2dates[n] ) { district2dates[n] = []; }
               district2dates[n].push( date );
             }
@@ -500,13 +426,13 @@
               upcomingEventsEl.appendChild(hr);
             }
             var o = document.createElement("div");
-            //console.log('date', date);
             o.innerHTML =
             "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
-              "<h3>" + date["title"][0]["value"] +  "</h3>" + 
-              "<h4>" + formatDate(date["field_date"][0]["value"]) + " " + date["field_time"][0]["value"] + "</h4>" + 
-              "<h5>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "<br>" ) +  "</h5>" + 
-              "<div>" + formatDateBody(date["body"][0]["processed"]) + "</div>" + 
+              "<h3>" + date["title"] +  "</h3>" + 
+              "<h4>" + formatDate(date["date"]) + (date["time"] ? " - " + date["time"] : "") + "</h4>" + 
+              "<h5>" + (date["location"] ? date["location"] : "?") +  "</h5>" + 
+              "<h5>" + (date["district"] ? date["district"] : "") + "</h5>" + 
+              "<div>" + formatDateBody(date["body"]) + "</div>" + 
             "</div>";
 
             upcomingEventsEl.appendChild(o);
@@ -522,53 +448,6 @@
       xhrDates.open('GET', DATES_URL, true);
       xhrDates.send('');
 
-      ///////////////////////////////////////
-
-      var xhrPastDates = new XMLHttpRequest();
-      xhrPastDates.onload = function () {
-        if (xhrPastDates.status >= 200 && xhrPastDates.status < 300) {
-
-          var dates = JSON.parse(xhrPastDates.response);
-          for( var i = 0 ; i < dates.length ; i++ ) {
-            var date = dates[i];
-            date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
-            if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
-              var n = date["field_neighbourhood"][0]["value"];
-              if( !district2dates[n] ) { district2dates[n] = []; }
-              district2dates[n].push( date );
-            }
-          }
-
-          var pastEvents = document.getElementById("past-events");
-          pastEvents.innerHTML = "<hr><h3 style='margin-bottom: 2em; display: inline-block;'>Vergangene Veranstaltungen</h3>";
-          var i = 0;
-          dates.forEach( function(date) {
-            if( i > 0 && i < dates.length ) {
-              var hr = document.createElement("div");
-              hr.style.cssText = 'margin-top: 2em; margin-bottom: 2em;';
-              pastEvents.appendChild(hr);
-            }
-            var o = document.createElement("div");
-            //console.log('date', date);
-            o.innerHTML =
-            "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
-              "<h3>" + date["title"][0]["value"] +  "</h3>" + 
-              "<h4>" + formatDate(date["field_date"][0]["value"]) + " - " + date["field_time"][0]["value"] + "</h4><br>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "" ) +
-              formatDateBody(date["body"][0]["processed"]) +
-            "</div>";
-
-            pastEvents.appendChild(o);
-            i += 1;
-          });
-
-          //if( upcomingDatesLoaded ) {
-            //renderDates();
-          //}
-          pastDatesLoaded = true;
-        }
-      };
-      xhrPastDates.open('GET', DATES_PAST_URL, true);
-      xhrPastDates.send('');
     });
   };
 
@@ -583,11 +462,9 @@
           for( var i = 0 ; i < dates.length ; i++ ) {
             var date = dates[i];
 
-            var eventDate = Date.parse(date["field_date"][0]["value"]);
-            date.isUpcomingEvent = (eventDate >= Date.now());
-            //console.log("eventDate", date["field_date"][0]["value"], eventDate.getTime(), Date.now(), date.isUpcomingEvent );
-            if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
-              var n = date["field_neighbourhood"][0]["value"];
+            date.isUpcomingEvent = (new Date(date["date"])).getTime() + (24*60*60*1000000) >= Date.now();
+            if( date && date["district"] ) {
+              var n = date["district"];
               if( !district2dates[n] ) { district2dates[n] = []; }
               district2dates[n].push( date );
             }
@@ -614,10 +491,11 @@
             var o = document.createElement("div");
             o.innerHTML =
             "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
-              "<h3>" + date["title"][0]["value"] +  "</h3>" + 
-              "<h4>" + formatDate(date["field_date"][0]["value"]) + " " + date["field_time"][0]["value"] + "</h4>" + 
-              "<h5>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "<br>" ) +  "</h5>" + 
-              "<div>" + formatDateBody(date["body"][0]["processed"]) + "</div>" + 
+              "<h3>" + date["title"] +  "</h3>" + 
+              "<h4>" + formatDate(date["date"]) + (date["time"] ? " - " + date["time"] : "") + "</h4>" + 
+              "<h5>" + (date["location"] ? date["location"] : "") + "</h5>" + 
+              "<h5>" + (date["district"] ? date["district"] : "") + "</h5>" + 
+              "<div>" + formatDateBody(date["body"]) + "</div>" + 
             "</div>";
 
             upcomingEventsEl.appendChild(o);
@@ -628,50 +506,6 @@
       };
       xhrDates.open('GET', DATES_URL, true);
       xhrDates.send('');
-
-      ///////////////////////////////////////
-
-      var xhrPastDates = new XMLHttpRequest();
-      xhrPastDates.onload = function () {
-        if (xhrPastDates.status >= 200 && xhrPastDates.status < 300) {
-
-          var dates = JSON.parse(xhrPastDates.response);
-          for( var i = 0 ; i < dates.length ; i++ ) {
-            var date = dates[i];
-            date.isUpcomingEvent = Date(date["field_date"][0]["value"]) >= Date.now();
-            if( date && date["field_neighbourhood"] && date["field_neighbourhood"].length && date["field_neighbourhood"][0]["value"] ) {
-              var n = date["field_neighbourhood"][0]["value"];
-              if( !district2dates[n] ) { district2dates[n] = []; }
-              district2dates[n].push( date );
-            }
-          }
-
-          var pastEvents = document.getElementById("past-events");
-          pastEvents.innerHTML = "<hr><h4 style='margin-bottom: 2em; display: inline-block;'>Vergangene Veranstaltungen</h4><br>";
-          var i = 0;
-          dates.forEach( function(date) {
-            if( i > 0 && i < dates.length ) {
-              var hr = document.createElement("div");
-              hr.style.cssText = 'margin-top: 2em; margin-bottom: 2em;';
-              pastEvents.appendChild(hr);
-            }
-            var o = document.createElement("div");
-            o.innerHTML =
-              "<div style='border-radius: 2em; padding: 1em; background-color: #" + (i % 2 == 0 ? "ddd" : "eee") + "'>" + 
-              "<h3>" + date["title"][0]["value"] +  "</h3>" + 
-              "<h4>" + formatDate(date["field_date"][0]["value"]) + " - " + date["field_time"][0]["value"] + "</h4><br>" + (date["field_location"] && date['field_location'].length > 0 ? date["field_location"][0]["value"] + " - " : "") + (date["field_location_street_and_number"] && date["field_location_street_and_number"].length ? date["field_location_street_and_number"][0]["value"] : "" ) +
-              formatDateBody(date["body"][0]["processed"]) +
-              "</div>";
-
-            pastEvents.appendChild(o);
-            i += 1;
-          });
-
-          pastDatesLoaded = true;
-        }
-      };
-    xhrPastDates.open('GET', DATES_PAST_URL, true);
-    xhrPastDates.send('');
   };
 
   var initPresentation = function() {
