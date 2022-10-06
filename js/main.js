@@ -648,7 +648,7 @@
     initDates();
 
     // fixes firefox iframe bug
-    document.getElementById('map-iframe').src = 'https://staging.app.xtransform.org/?embedded=true';
+    document.getElementById('map-iframe').src = 'https://app.xtransform.org/?embedded=true';
   };
 
   init();
