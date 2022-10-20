@@ -462,7 +462,7 @@
           for( var i = 0 ; i < dates.length ; i++ ) {
             var date = dates[i];
 
-            date.isUpcomingEvent = (new Date(date["date"])).getTime() + (24*60*60*1000000) >= Date.now();
+            date.isUpcomingEvent = (new Date(date["date"])).getTime() + (24*60*60*1000) >= Date.now();
             if( date && date["district"] ) {
               var n = date["district"];
               if( !district2dates[n] ) { district2dates[n] = []; }
